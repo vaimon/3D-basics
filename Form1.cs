@@ -18,6 +18,11 @@ namespace _3Dbasics
             InitializeComponent();
             selectShape.SelectedIndex = 0;
             selectAxis.SelectedIndex = 0;
+            g = canvas.CreateGraphics();
+            g.ScaleTransform(1.0F, -1.0F);
+            g.TranslateTransform(0.0F, -(float)canvas.Height);
+
+            Point.worldCenter = new PointF(canvas.Width / 2, canvas.Height / 2);
             setFlags();
         }
         void setFlags(bool interactiveMode = false)
@@ -47,11 +52,11 @@ namespace _3Dbasics
         {
             switch (selectShape.SelectedIndex)
             {
-                case 0: currentShape = ShapeType.TETRAHEDRON; break;
-                case 1: currentShape = ShapeType.HEXAHEDRON; break;
-                case 2: currentShape = ShapeType.OCTAHEDRON; break;
-                case 3: currentShape = ShapeType.ICOSAHEDRON; break;
-                case 4: currentShape = ShapeType.DODECAHEDRON; break;
+                case 0: currentShapeType = ShapeType.TETRAHEDRON; break;
+                case 1: currentShapeType = ShapeType.HEXAHEDRON; break;
+                case 2: currentShapeType = ShapeType.OCTAHEDRON; break;
+                case 3: currentShapeType = ShapeType.ICOSAHEDRON; break;
+                case 4: currentShapeType = ShapeType.DODECAHEDRON; break;
                 default: throw new Exception("Фигурки всё сломали :(");
             }
         }
@@ -69,7 +74,9 @@ namespace _3Dbasics
 
         private void rbPerspective_CheckedChanged(object sender, EventArgs e)
         {
-            isPerspective = rbPerspective.Checked;
+            Point.isPerspective = rbPerspective.Checked;
+            redraw();
         }
+
     }
 }

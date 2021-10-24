@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AffineTransformations
+namespace _3Dbasics
 {
     class Matrix
     {
@@ -48,7 +48,7 @@ namespace AffineTransformations
             }
         }
 
-        public static Matrix operator *(Matrix matr, float value)
+        public static Matrix operator *(Matrix matr, double value)
         {
             var res = new Matrix(matr.rowCount, matr.colCount);
             for (int i = 0; i < matr.rowCount; i++)

@@ -72,10 +72,12 @@ namespace _3Dbasics
             this.rbAxonometric.AutoSize = true;
             this.rbAxonometric.BackColor = System.Drawing.Color.White;
             this.rbAxonometric.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.rbAxonometric.Checked = true;
             this.rbAxonometric.Location = new System.Drawing.Point(1392, 47);
             this.rbAxonometric.Name = "rbAxonometric";
             this.rbAxonometric.Size = new System.Drawing.Size(287, 29);
             this.rbAxonometric.TabIndex = 17;
+            this.rbAxonometric.TabStop = true;
             this.rbAxonometric.Text = "Аксонометрическая проекция";
             this.rbAxonometric.UseVisualStyleBackColor = false;
             // 
@@ -84,12 +86,10 @@ namespace _3Dbasics
             this.rbPerspective.AutoSize = true;
             this.rbPerspective.BackColor = System.Drawing.Color.White;
             this.rbPerspective.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.rbPerspective.Checked = true;
             this.rbPerspective.Location = new System.Drawing.Point(1392, 12);
             this.rbPerspective.Name = "rbPerspective";
             this.rbPerspective.Size = new System.Drawing.Size(246, 29);
             this.rbPerspective.TabIndex = 17;
-            this.rbPerspective.TabStop = true;
             this.rbPerspective.Text = "Перспективная проекция";
             this.rbPerspective.UseVisualStyleBackColor = false;
             this.rbPerspective.CheckedChanged += new System.EventHandler(this.rbPerspective_CheckedChanged);
