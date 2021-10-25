@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace _3Dbasics
 {
+    /// <summary>
+    /// Тип координатной прямой (для поворотов)
+    /// </summary>
     public enum AxisType { X, Y, Z };
     
     public partial class Form1
@@ -28,6 +31,13 @@ namespace _3Dbasics
             redraw();
         }
 
+        /// <summary>
+        /// Сдвинуть фигуру на заданные расстояния
+        /// </summary>
+        /// <param name="shape">Фигура</param>
+        /// <param name="dx">Сдвиг по оси X</param>
+        /// <param name="dy">Сдвиг по оси Y</param>
+        /// <param name="dz">Сдвиг по оси Z</param>
         void shift(ref Shape shape, int dx, int dy, int dz)
         {
             Matrix shift = new Matrix(4, 4).fill(1, 0, 0, dx, 0, 1, 0, dy, 0, 0, 1, dz, 0, 0, 0, 1);
@@ -38,6 +48,13 @@ namespace _3Dbasics
             });
         }
 
+        /// <summary>
+        /// Растянуть фигуру на заданные коэффициенты
+        /// </summary>
+        /// <param name="shape">Фигура</param>
+        /// <param name="cx">Растяжение по оси X</param>
+        /// <param name="cy">Растяжение по оси Y</param>
+        /// <param name="cz">Растяжение по оси Z</param>
         void scale(ref Shape shape, int cx, int cy, int cz)
         {
             Matrix scale = new Matrix(4, 4).fill(cx, 0, 0, 0, 0, cy, 0, 0, 0, 0, cz, 0, 0, 0, 0, 1);
@@ -48,6 +65,12 @@ namespace _3Dbasics
             });
         }
 
+        /// <summary>
+        /// Повернуть фигуру на заданный угол вокруг заданной оси
+        /// </summary>
+        /// <param name="shape">Фигура</param>
+        /// <param name="type">Ось, вокруг которой поворачиваем</param>
+        /// <param name="angle">Угол поворота в градусах</param>
         void rotate(ref Shape shape, AxisType type, int angle)
         {
             Matrix rotation = new Matrix(0,0);

@@ -18,7 +18,11 @@ namespace _3Dbasics
             colCount = cols;
             matr = new double[rows,cols];
         }
-
+        /// <summary>
+        /// Заполнение матрицы слева направо, сверху вниз
+        /// </summary>
+        /// <param name="elems">Элементы для заполнения</param>
+        /// <returns></returns>
         public Matrix fill(params double[] elems)
         {
             for(int i = 0; i < rowCount; i++)
@@ -30,7 +34,11 @@ namespace _3Dbasics
             }
             return this;
         }
-
+        /// <summary>
+        /// Заполняет матрицу для преобразований в 2D
+        /// </summary>
+        /// <param name="elems"></param>
+        /// <returns></returns>
         public Matrix fillAffine(params double[] elems)
         {
             return fill(elems[0],elems[1],0,elems[2],elems[3],0,elems[4],elems[5],1);
@@ -47,7 +55,12 @@ namespace _3Dbasics
                 matr[x, y] = value;
             }
         }
-
+        /// <summary>
+        /// Умножение матрицы на число
+        /// </summary>
+        /// <param name="matr">Матрица</param>
+        /// <param name="value">Вещественное число</param>
+        /// <returns></returns>
         public static Matrix operator *(Matrix matr, double value)
         {
             var res = new Matrix(matr.rowCount, matr.colCount);
@@ -60,7 +73,12 @@ namespace _3Dbasics
             }
             return res;
         }
-
+        /// <summary>
+        /// Умножение матриц
+        /// </summary>
+        /// <param name="matrix1">Матрица вещественных</param>
+        /// <param name="matrix2">Матрица вещественных</param>
+        /// <returns></returns>
         public static Matrix operator *(Matrix matrix1, Matrix matrix2)
         {
             if (matrix1.colCount != matrix2.rowCount)

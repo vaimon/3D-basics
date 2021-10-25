@@ -8,8 +8,14 @@ using System.Threading.Tasks;
 namespace _3Dbasics
 {
     delegate void ActionRef<T>(ref T item);
-
+    /// <summary>
+    /// Тип проекции на экран
+    /// </summary>
     public enum ProjectionType { ISOMETRIC, PERSPECTIVE, TRIMETRIC }
+
+    /// <summary>
+    /// Точка в пространстве
+    /// </summary>
     class Point
     {
         int x, y, z;
@@ -30,6 +36,10 @@ namespace _3Dbasics
         public int Y { get => y; set => y = value; }
         public int Z { get => z; set => z = value; }
 
+        /// <summary>
+        /// Перевод точки из 3D в 2D
+        /// </summary>
+        /// <returns>Точку на экране в вещестаенных координатах</returns>
         public PointF to2D(){
             if (projection == ProjectionType.PERSPECTIVE)
             {
@@ -48,7 +58,9 @@ namespace _3Dbasics
             }
         }
     }
-
+    /// <summary>
+    /// Отрезок в пространстве
+    /// </summary>
     class Line
     {
         public Point start,end;
@@ -62,7 +74,9 @@ namespace _3Dbasics
         public Point Start { get => start; set => start = value; }
         public Point End { get => end; set => end = value; }
     }
-
+    /// <summary>
+    /// Грань фигуры, состоящая из конечного числа отрезков
+    /// </summary>
     class Face
     {
         List<Line> edges;
@@ -90,6 +104,10 @@ namespace _3Dbasics
 
         public List<Line> Edges { get => edges; }
 
+        /// <summary>
+        /// Получение центра тяжести грани
+        /// </summary>
+        /// <returns><c>Point</c> - центр тяжести</returns>
         public Point getCenter()
         {
             int x = 0, y = 0, z = 0;
@@ -103,6 +121,9 @@ namespace _3Dbasics
         }
     }
 
+    /// <summary>
+    /// Объёмная фигура, состоящая из граней
+    /// </summary>
     class Shape
     {
         List<Face> faces;
@@ -130,6 +151,10 @@ namespace _3Dbasics
 
         public List<Face> Faces { get => faces; }
 
+        /// <summary>
+        /// Преобразует все точки в фигуре по заданной функции
+        /// </summary>
+        /// <param name="f">Функция, преобразующая точку фигуры</param>
         public void transformPoints(ActionRef<Point> f)
         {
             foreach (var face in Faces)
@@ -168,8 +193,16 @@ namespace _3Dbasics
 
     }
 
+    /// <summary>
+    /// Класс для получения фигур различного типа
+    /// </summary>
     class ShapeGetter
     {
+        /// <summary>
+        /// Получает фигуру фиксированного размера (в среднем до 200 пикселей по размеру)
+        /// </summary>
+        /// <param name="type">Тип фигуры</param>
+        /// <returns></returns>
         public static Shape getShape(ShapeType type)
         {
             switch (type)
@@ -182,6 +215,10 @@ namespace _3Dbasics
                 default: throw new Exception("C# очень умный (нет)");
             }
         }
+        /// <summary>
+        /// Получение тетраэдра
+        /// </summary>
+        /// <returns></returns>
         public static Tetrahedron getTetrahedron()
         {
             Tetrahedron res = new Tetrahedron();
@@ -196,6 +233,10 @@ namespace _3Dbasics
             return res;
         }
 
+        /// <summary>
+        /// Получение октаэдра
+        /// </summary>
+        /// <returns></returns>
         public static Octahedron getOctahedron()
         {
             Octahedron res = new Octahedron();
@@ -224,6 +265,10 @@ namespace _3Dbasics
             return res;
         }
 
+        /// <summary>
+        /// Получение гексаэдра (куба)
+        /// </summary>
+        /// <returns></returns>
         public static Hexahedron getHexahedron()
         {
             Hexahedron res = new Hexahedron();
@@ -243,11 +288,21 @@ namespace _3Dbasics
             res.addFace(new Face().addEdge(new Line(d, c)).addEdge(new Line(c, g)).addEdge(new Line(g, h)).addEdge(new Line(h, d)));
             return res;
         }
+
+        /// <summary>
+        /// Переводит угол из градусов в радианы
+        /// </summary>
+        /// <param name="angle">Угол в градусах</param>
+        /// <returns>Угол в радианах</returns>
         public static double degreesToRadians(double angle)
         {
             return Math.PI * angle / 180.0;
         }
 
+        /// <summary>
+        /// Получение икосаэдра
+        /// </summary>
+        /// <returns></returns>
         public static Icosahedron getIcosahedron()
         {
             Icosahedron res = new Icosahedron();
@@ -282,6 +337,10 @@ namespace _3Dbasics
             return res;
         }
 
+        /// <summary>
+        /// Получение додекаэдра
+        /// </summary>
+        /// <returns></returns>
         public static Dodecahedron getDodecahedron()
         {
             Dodecahedron res = new Dodecahedron();

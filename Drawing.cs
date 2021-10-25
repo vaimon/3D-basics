@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace _3Dbasics
 {
+    /// <summary>
+    /// Тип объёмной фигуры
+    /// </summary>
     public enum ShapeType { TETRAHEDRON, HEXAHEDRON, OCTAHEDRON, ICOSAHEDRON, DODECAHEDRON }
 
     public partial class Form1
@@ -42,6 +45,11 @@ namespace _3Dbasics
             }
             
         }
+
+        /// <summary>
+        /// Рисует фигуры на канвасе, выделяя цветом некоторые грани у додекаэдра и икосаэра
+        /// </summary>
+        /// <param name="shape">Фигура, которую надо нарисовать</param>
         void drawShape(Shape shape)
         {
             if (shape is Icosahedron)
@@ -96,6 +104,11 @@ namespace _3Dbasics
             }
         }
 
+        /// <summary>
+        /// Рисует заданную границу грани заданным цветом
+        /// </summary>
+        /// <param name="face">Грань, которую надо нарисовать</param>
+        /// <param name="pen">Цвет границы</param>
         void drawFace(Face face, Pen pen)
         {
             foreach(var line in face.Edges)
@@ -104,11 +117,19 @@ namespace _3Dbasics
             }
         }
 
+        /// <summary>
+        /// Рисует линию, переводя её координаты из 3D в 2D
+        /// </summary>
+        /// <param name="line">Линия, которую надо нарисовать</param>
+        /// <param name="pen">Цвет линии</param>
         void drawLine(Line line, Pen pen)
         {
             g.DrawLine(pen, line.Start.to2D(), line.End.to2D());
         }
 
+        /// <summary>
+        /// Рисует коодинатные прямые (с подписями) и подписывает координаты каждой точки
+        /// </summary>
         void drawAxis()
         {
             Line axisX = new Line(new Point(0, 0, 0), new Point(300, 0, 0));
@@ -135,6 +156,9 @@ namespace _3Dbasics
             g.TranslateTransform(0.0F, -(float)canvas.Height);
         }
 
+        /// <summary>
+        /// Перерисовывает всю сцену
+        /// </summary>
         void redraw()
         {
             g.Clear(Color.White);
