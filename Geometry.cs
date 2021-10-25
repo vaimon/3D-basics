@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 
 namespace _3Dbasics
 {
+    delegate void ActionRef<T>(ref T item);
+
     public enum ProjectionType { ISOMETRIC, PERSPECTIVE, TRIMETRIC }
     class Point
     {
@@ -49,7 +51,7 @@ namespace _3Dbasics
 
     class Line
     {
-        Point start,end;
+        public Point start,end;
 
         public Line(Point start, Point end)
         {
@@ -127,6 +129,18 @@ namespace _3Dbasics
         }
 
         public List<Face> Faces { get => faces; }
+
+        public void transformPoints(ActionRef<Point> f)
+        {
+            foreach (var face in Faces)
+            {
+                foreach (var line in face.Edges)
+                {
+                    f(ref line.start);
+                    f(ref line.end);
+                }
+            }
+        }
     }
 
     class Tetrahedron : Shape
@@ -229,7 +243,7 @@ namespace _3Dbasics
             res.addFace(new Face().addEdge(new Line(d, c)).addEdge(new Line(c, g)).addEdge(new Line(g, h)).addEdge(new Line(h, d)));
             return res;
         }
-        private static double degreesToRadians(double angle)
+        public static double degreesToRadians(double angle)
         {
             return Math.PI * angle / 180.0;
         }

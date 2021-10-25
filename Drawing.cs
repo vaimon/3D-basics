@@ -120,6 +120,9 @@ namespace _3Dbasics
 
             g.ScaleTransform(1.0F, -1.0F);
             g.TranslateTransform(0.0F, -(float)canvas.Height);
+            g.DrawString($" X", new Font("Arial", 10, FontStyle.Regular), new SolidBrush(Color.Red), axisX.End.to2D().X, canvas.Height - axisX.End.to2D().Y);
+            g.DrawString($" Y", new Font("Arial", 10, FontStyle.Regular), new SolidBrush(Color.Blue), axisY.End.to2D().X, canvas.Height - axisY.End.to2D().Y);
+            g.DrawString($" Z", new Font("Arial", 10, FontStyle.Regular), new SolidBrush(Color.Green), axisZ.End.to2D().X, canvas.Height - axisZ.End.to2D().Y);
             foreach (var face in currentShape.Faces)
             {
                 foreach(var line in face.Edges)

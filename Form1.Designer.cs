@@ -151,6 +151,7 @@ namespace _3Dbasics
             this.textAngle.Name = "textAngle";
             this.textAngle.Size = new System.Drawing.Size(67, 31);
             this.textAngle.TabIndex = 3;
+            this.textAngle.Text = "0";
             // 
             // label3
             // 
@@ -208,6 +209,8 @@ namespace _3Dbasics
             this.textShiftZ.Name = "textShiftZ";
             this.textShiftZ.Size = new System.Drawing.Size(50, 31);
             this.textShiftZ.TabIndex = 5;
+            this.textShiftZ.Text = "0";
+            this.textShiftZ.TextChanged += new System.EventHandler(this.textShiftZ_TextChanged);
             // 
             // textShiftY
             // 
@@ -217,6 +220,8 @@ namespace _3Dbasics
             this.textShiftY.Name = "textShiftY";
             this.textShiftY.Size = new System.Drawing.Size(50, 31);
             this.textShiftY.TabIndex = 6;
+            this.textShiftY.Text = "0";
+            this.textShiftY.TextChanged += new System.EventHandler(this.textShiftY_TextChanged);
             // 
             // textShiftX
             // 
@@ -226,6 +231,8 @@ namespace _3Dbasics
             this.textShiftX.Name = "textShiftX";
             this.textShiftX.Size = new System.Drawing.Size(50, 31);
             this.textShiftX.TabIndex = 7;
+            this.textShiftX.Text = "0";
+            this.textShiftX.TextChanged += new System.EventHandler(this.textShiftX_TextChanged);
             // 
             // label4
             // 
@@ -262,6 +269,8 @@ namespace _3Dbasics
             this.textScaleZ.Name = "textScaleZ";
             this.textScaleZ.Size = new System.Drawing.Size(50, 31);
             this.textScaleZ.TabIndex = 11;
+            this.textScaleZ.Text = "0";
+            this.textScaleZ.TextChanged += new System.EventHandler(this.textScaleZ_TextChanged);
             // 
             // textScaleY
             // 
@@ -271,6 +280,8 @@ namespace _3Dbasics
             this.textScaleY.Name = "textScaleY";
             this.textScaleY.Size = new System.Drawing.Size(50, 31);
             this.textScaleY.TabIndex = 12;
+            this.textScaleY.Text = "0";
+            this.textScaleY.TextChanged += new System.EventHandler(this.textScaleY_TextChanged);
             // 
             // textScaleX
             // 
@@ -280,6 +291,8 @@ namespace _3Dbasics
             this.textScaleX.Name = "textScaleX";
             this.textScaleX.Size = new System.Drawing.Size(50, 31);
             this.textScaleX.TabIndex = 13;
+            this.textScaleX.Text = "0";
+            this.textScaleX.TextChanged += new System.EventHandler(this.textScaleX_TextChanged);
             // 
             // label8
             // 
