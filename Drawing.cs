@@ -58,7 +58,7 @@ namespace _3Dbasics
                     Face face = shape.Faces[i];
                     drawFace(face, pen);
                 }
-                pen = new Pen(Color.DarkRed, 3);
+                pen = new Pen(Color.Red, 3);
                 for (int i = 15; i < 20; i++)
                 {
                     Face face = shape.Faces[i];
@@ -71,7 +71,7 @@ namespace _3Dbasics
                 for (int i = 0; i < 10; i++)
                 {
                     Face face = shape.Faces[i];
-                    Pen pen = new Pen(Color.DarkRed, 3);
+                    Pen pen = new Pen(Color.Red, 3);
                     if(i % 2 == 0)
                     {
                         pen = new Pen(Color.Blue, 3);
