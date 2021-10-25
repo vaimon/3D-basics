@@ -34,6 +34,7 @@ namespace _3Dbasics
             buttonShift.Enabled = interactiveMode;
             rbAxonometric.Enabled = interactiveMode;
             rbPerspective.Enabled = interactiveMode;
+            rbIsometric.Enabled = interactiveMode;
             btnShowAxis.Enabled = interactiveMode;
             textAngle.Enabled = interactiveMode;
             textScaleX.Enabled = interactiveMode;
@@ -74,9 +75,29 @@ namespace _3Dbasics
 
         private void rbPerspective_CheckedChanged(object sender, EventArgs e)
         {
-            Point.isPerspective = rbPerspective.Checked;
-            redraw();
+            if (rbPerspective.Checked)
+            {
+                Point.projection = ProjectionType.PERSPECTIVE;
+                redraw();
+            }
         }
 
+        private void rbIsometric_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rbIsometric.Checked)
+            {
+                Point.projection = ProjectionType.ISOMETRIC;
+                redraw();
+            }
+        }
+
+        private void rbAxonometric_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rbAxonometric.Checked)
+            {
+                Point.projection = ProjectionType.TRIMETRIC;
+                redraw();
+            }
+        }
     }
 }

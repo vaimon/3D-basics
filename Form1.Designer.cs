@@ -54,6 +54,7 @@ namespace _3Dbasics
             this.label8 = new System.Windows.Forms.Label();
             this.selectAxis = new System.Windows.Forms.ComboBox();
             this.btnShowAxis = new System.Windows.Forms.Button();
+            this.rbIsometric = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.canvas)).BeginInit();
             this.SuspendLayout();
             // 
@@ -75,11 +76,12 @@ namespace _3Dbasics
             this.rbAxonometric.Checked = true;
             this.rbAxonometric.Location = new System.Drawing.Point(1392, 47);
             this.rbAxonometric.Name = "rbAxonometric";
-            this.rbAxonometric.Size = new System.Drawing.Size(287, 29);
+            this.rbAxonometric.Size = new System.Drawing.Size(256, 29);
             this.rbAxonometric.TabIndex = 17;
             this.rbAxonometric.TabStop = true;
-            this.rbAxonometric.Text = "Аксонометрическая проекция";
+            this.rbAxonometric.Text = "Триметрическая проекция";
             this.rbAxonometric.UseVisualStyleBackColor = false;
+            this.rbAxonometric.CheckedChanged += new System.EventHandler(this.rbAxonometric_CheckedChanged);
             // 
             // rbPerspective
             // 
@@ -304,13 +306,26 @@ namespace _3Dbasics
             // 
             // btnShowAxis
             // 
-            this.btnShowAxis.Location = new System.Drawing.Point(1392, 82);
+            this.btnShowAxis.Location = new System.Drawing.Point(1392, 114);
             this.btnShowAxis.Name = "btnShowAxis";
             this.btnShowAxis.Size = new System.Drawing.Size(287, 52);
             this.btnShowAxis.TabIndex = 18;
             this.btnShowAxis.Text = "Показать точки и оси";
             this.btnShowAxis.UseVisualStyleBackColor = true;
             this.btnShowAxis.Click += new System.EventHandler(this.btnShowAxis_Click);
+            // 
+            // rbIsometric
+            // 
+            this.rbIsometric.AutoSize = true;
+            this.rbIsometric.BackColor = System.Drawing.Color.White;
+            this.rbIsometric.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.rbIsometric.Location = new System.Drawing.Point(1392, 79);
+            this.rbIsometric.Name = "rbIsometric";
+            this.rbIsometric.Size = new System.Drawing.Size(258, 29);
+            this.rbIsometric.TabIndex = 17;
+            this.rbIsometric.Text = "Изометрическая проекция";
+            this.rbIsometric.UseVisualStyleBackColor = false;
+            this.rbIsometric.CheckedChanged += new System.EventHandler(this.rbIsometric_CheckedChanged);
             // 
             // Form1
             // 
@@ -320,6 +335,7 @@ namespace _3Dbasics
             this.ClientSize = new System.Drawing.Size(1691, 985);
             this.Controls.Add(this.btnShowAxis);
             this.Controls.Add(this.rbPerspective);
+            this.Controls.Add(this.rbIsometric);
             this.Controls.Add(this.rbAxonometric);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label5);
@@ -380,6 +396,7 @@ namespace _3Dbasics
         private System.Windows.Forms.RadioButton rbPerspective;
         private System.Windows.Forms.RadioButton rbAxonometric;
         private System.Windows.Forms.Button btnShowAxis;
+        private System.Windows.Forms.RadioButton rbIsometric;
     }
 }
 

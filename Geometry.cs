@@ -7,12 +7,14 @@ using System.Threading.Tasks;
 
 namespace _3Dbasics
 {
+    public enum ProjectionType { ISOMETRIC, PERSPECTIVE, TRIMETRIC }
     class Point
     {
         int x, y, z;
-        public static bool isPerspective = false;
+        public static ProjectionType projection = ProjectionType.TRIMETRIC;
         public static PointF worldCenter;
         static Matrix isometricMatrix = new Matrix(3,3).fill(Math.Sqrt(3),0,-Math.Sqrt(3),1,2,1, Math.Sqrt(2),-Math.Sqrt(2), Math.Sqrt(2)) * (1/ Math.Sqrt(6));
+        static Matrix trimetricMatrix = new Matrix(4, 4).fill(Math.Sqrt(3)/2, Math.Sqrt(2)/4, 0, 1, 0, Math.Sqrt(2)/2, 0, 1, 0.5,-Math.Sqrt(6)/4,0,0,0,0,0,1);
         static Matrix centralMatrix = new Matrix(4, 4).fill(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, k, 0, 0, 0, 1);
         const double k = 0.001f;
         public Point(int x, int y, int z)
@@ -27,15 +29,20 @@ namespace _3Dbasics
         public int Z { get => z; set => z = value; }
 
         public PointF to2D(){
-            if (isPerspective)
+            if (projection == ProjectionType.PERSPECTIVE)
             {
                 Matrix res = new Matrix(1, 4).fill(X, Y, Z, 1) * centralMatrix * (1/(k*Z + 1));
                 return new PointF(worldCenter.X + (float)res[0,0], worldCenter.Y + (float)res[0,1]);
             }
+            else if (projection == ProjectionType.TRIMETRIC)
+            {
+                Matrix res = new Matrix(1, 4).fill(X, Y, Z, 1) * trimetricMatrix;
+                return new PointF(worldCenter.X + (float)res[0,0], worldCenter.Y + (float)res[0, 1]);
+            }
             else
             {
                 Matrix res = new Matrix(3, 3).fill(1, 0, 0, 0, 1, 0, 0, 0, 0) * isometricMatrix * new Matrix(3, 1).fill(X, Y, Z);
-                return new PointF(worldCenter.X + (float)res[0,0], worldCenter.Y + (float)res[1, 0]);
+                return new PointF(worldCenter.X + (float)res[0, 0], worldCenter.Y + (float)res[1, 0]);
             }
         }
     }
@@ -80,6 +87,18 @@ namespace _3Dbasics
         }
 
         public List<Line> Edges { get => edges; }
+
+        public Point getCenter()
+        {
+            int x = 0, y = 0, z = 0;
+            foreach(var line in edges)
+            {
+                x += line.Start.X;
+                y += line.Start.Y;
+                z += line.Start.Z;
+            }
+            return new Point(x / edges.Count, y / edges.Count, z / edges.Count);
+        }
     }
 
     class Shape
@@ -110,6 +129,31 @@ namespace _3Dbasics
         public List<Face> Faces { get => faces; }
     }
 
+    class Tetrahedron : Shape
+    {
+
+    }
+
+    class Octahedron : Shape
+    {
+
+    }
+
+    class Hexahedron : Shape
+    {
+
+    }
+
+    class Icosahedron : Shape
+    {
+
+    }
+
+    class Dodecahedron : Shape
+    {
+
+    }
+
     class ShapeGetter
     {
         public static Shape getShape(ShapeType type)
@@ -124,9 +168,9 @@ namespace _3Dbasics
                 default: throw new Exception("C# очень умный (нет)");
             }
         }
-        public static Shape getTetrahedron()
+        public static Tetrahedron getTetrahedron()
         {
-            Shape res = new Shape();
+            Tetrahedron res = new Tetrahedron();
             Point a = new Point(0, 0, 0);
             Point c = new Point(200, 0, 200);
             Point f = new Point(200, 200, 0);
@@ -138,16 +182,37 @@ namespace _3Dbasics
             return res;
         }
 
-        public static Shape getOctahedron()
+        public static Octahedron getOctahedron()
         {
-            Shape res = new Shape();
+            Octahedron res = new Octahedron();
+            //Point a = new Point(100, 100, 0);
+            //Point b = new Point(200, 100, 100);
+            //Point c = new Point(100, 100, 200);
+            //Point d = new Point(0, 100, 100);
+            //Point e = new Point(100, 200, 100);
+            //Point f = new Point(100, 0, 100);
+            var cube = getHexahedron();
+            Point a = cube.Faces[0].getCenter();
+            Point b = cube.Faces[1].getCenter();
+            Point c = cube.Faces[2].getCenter();
+            Point d = cube.Faces[3].getCenter();
+            Point e = cube.Faces[4].getCenter();
+            Point f = cube.Faces[5].getCenter();
 
+            res.addFace(new Face().addEdge(new Line(a, f)).addEdge(new Line(f, b)).addEdge(new Line(b, a)));
+            res.addFace(new Face().addEdge(new Line(b, c)).addEdge(new Line(c, f)).addEdge(new Line(f, b)));
+            res.addFace(new Face().addEdge(new Line(c, d)).addEdge(new Line(d, f)).addEdge(new Line(f, c)));
+            res.addFace(new Face().addEdge(new Line(d, a)).addEdge(new Line(a, f)).addEdge(new Line(f, d)));
+            res.addFace(new Face().addEdge(new Line(a, e)).addEdge(new Line(e, b)).addEdge(new Line(b, a)));
+            res.addFace(new Face().addEdge(new Line(b, e)).addEdge(new Line(e, c)).addEdge(new Line(c, b)));
+            res.addFace(new Face().addEdge(new Line(c, e)).addEdge(new Line(e, d)).addEdge(new Line(d, c)));
+            res.addFace(new Face().addEdge(new Line(d, e)).addEdge(new Line(e, a)).addEdge(new Line(a, d)));
             return res;
         }
 
-        public static Shape getHexahedron()
+        public static Hexahedron getHexahedron()
         {
-            Shape res = new Shape();
+            Hexahedron res = new Hexahedron();
             Point a = new Point(0, 0, 0);
             Point b = new Point(200, 0, 0);
             Point c = new Point(200, 0, 200);
@@ -164,17 +229,70 @@ namespace _3Dbasics
             res.addFace(new Face().addEdge(new Line(d, c)).addEdge(new Line(c, g)).addEdge(new Line(g, h)).addEdge(new Line(h, d)));
             return res;
         }
-
-        public static Shape getIcosahedron()
+        private static double degreesToRadians(double angle)
         {
-            Shape res = new Shape();
+            return Math.PI * angle / 180.0;
+        }
 
+        public static Icosahedron getIcosahedron()
+        {
+            Icosahedron res = new Icosahedron();
+            Point circleCenter = new Point(100, 100, 100);
+            List<Point> circlePoints = new List<Point>();
+            for(int angle = 0; angle < 360; angle += 36)
+            {
+                if( angle % 72 == 0)
+                {
+                    circlePoints.Add(new Point(circleCenter.X + (int)(100 * Math.Cos(degreesToRadians(angle))), circleCenter.Y + 100, circleCenter.Z + (int)(100 * Math.Sin(degreesToRadians(angle)))));
+                    continue;
+                }
+                circlePoints.Add(new Point(circleCenter.X + (int)(100 * Math.Cos(degreesToRadians(angle))), circleCenter.Y, circleCenter.Z + (int)(100 * Math.Sin(degreesToRadians(angle)))));
+            }
+            Point a = new Point(100, 50, 100);
+            Point b = new Point(100, 250, 100);
+            for(int i = 0; i < 10; i++)
+            {
+                res.addFace(new Face().addEdge(new Line(circlePoints[i], circlePoints[(i + 1) % 10])).addEdge(new Line(circlePoints[(i + 1) % 10], circlePoints[(i + 2) % 10])).addEdge(new Line(circlePoints[(i+2) % 10], circlePoints[i])));
+            }
+            res.addFace(new Face().addEdge(new Line(circlePoints[1], a)).addEdge(new Line(a, circlePoints[3])).addEdge(new Line(circlePoints[3], circlePoints[1])));
+            res.addFace(new Face().addEdge(new Line(circlePoints[3], a)).addEdge(new Line(a, circlePoints[5])).addEdge(new Line(circlePoints[5], circlePoints[3])));
+            res.addFace(new Face().addEdge(new Line(circlePoints[5], a)).addEdge(new Line(a, circlePoints[7])).addEdge(new Line(circlePoints[7], circlePoints[5])));
+            res.addFace(new Face().addEdge(new Line(circlePoints[7], a)).addEdge(new Line(a, circlePoints[9])).addEdge(new Line(circlePoints[9], circlePoints[7])));
+            res.addFace(new Face().addEdge(new Line(circlePoints[9], a)).addEdge(new Line(a, circlePoints[1])).addEdge(new Line(circlePoints[1], circlePoints[9])));
+
+            res.addFace(new Face().addEdge(new Line(circlePoints[0], b)).addEdge(new Line(b, circlePoints[2])).addEdge(new Line(circlePoints[2], circlePoints[0])));
+            res.addFace(new Face().addEdge(new Line(circlePoints[2], b)).addEdge(new Line(b, circlePoints[4])).addEdge(new Line(circlePoints[4], circlePoints[2])));
+            res.addFace(new Face().addEdge(new Line(circlePoints[4], b)).addEdge(new Line(b, circlePoints[6])).addEdge(new Line(circlePoints[6], circlePoints[4])));
+            res.addFace(new Face().addEdge(new Line(circlePoints[6], b)).addEdge(new Line(b, circlePoints[8])).addEdge(new Line(circlePoints[8], circlePoints[6])));
+            res.addFace(new Face().addEdge(new Line(circlePoints[8], b)).addEdge(new Line(b, circlePoints[0])).addEdge(new Line(circlePoints[0], circlePoints[8])));
             return res;
         }
 
-        public static Shape getDodecahedron()
+        public static Dodecahedron getDodecahedron()
         {
-            Shape res = new Shape();
+            Dodecahedron res = new Dodecahedron();
+            var icosahedron = getIcosahedron();
+            List<Point> centers = new List<Point>();
+            for (int i = 0; i < icosahedron.Faces.Count; i++)
+            {
+                Face face = icosahedron.Faces[i];
+                var c = face.getCenter();
+                centers.Add(c);
+            }
+
+            //res.addFace(new Face().addEdge(new Line(centers[9], centers[0])).addEdge(new Line(centers[0], centers[1])).addEdge(new Line(centers[1], centers[10])).addEdge(new Line(centers[10], centers[14])).addEdge(new Line(centers[14], centers[9])));
+            for (int i = 0; i < 10; i++)
+            {
+                if (i % 2 == 0)
+                {
+                    res.addFace(new Face().addEdge(new Line(centers[i], centers[(i + 1) % 10])).addEdge(new Line(centers[(i + 1) % 10], centers[(i + 2) % 10])).addEdge(new Line(centers[(i + 2) % 10], centers[15 + (i / 2 + 1) % 5])).addEdge(new Line(centers[15 + (i / 2 + 1) % 5], centers[15 + i / 2])).addEdge(new Line(centers[15 + i/ 2], centers[i])));
+
+                    continue;
+                }
+                res.addFace(new Face().addEdge(new Line(centers[i], centers[(i + 1) % 10])).addEdge(new Line(centers[(i + 1) % 10], centers[(i + 2) % 10])).addEdge(new Line(centers[(i + 2) % 10], centers[10 + (i / 2 + 1) % 5])).addEdge(new Line(centers[10 + (i / 2 + 1) % 5], centers[10 + i / 2])).addEdge(new Line(centers[10 + i / 2], centers[i])));
+            }
+            res.addFace(new Face().addEdge(new Line(centers[15], centers[16])).addEdge(new Line(centers[16], centers[17])).addEdge(new Line(centers[17], centers[18])).addEdge(new Line(centers[18], centers[19])).addEdge(new Line(centers[19], centers[15])));
+            res.addFace(new Face().addEdge(new Line(centers[10], centers[11])).addEdge(new Line(centers[11], centers[12])).addEdge(new Line(centers[12], centers[13])).addEdge(new Line(centers[13], centers[14])).addEdge(new Line(centers[14], centers[10])));
 
             return res;
         }
