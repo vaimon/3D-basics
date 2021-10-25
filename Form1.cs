@@ -18,6 +18,8 @@ namespace _3Dbasics
             InitializeComponent();
             selectShape.SelectedIndex = 0;
             selectAxis.SelectedIndex = 0;
+            selectMirrorAxis.SelectedIndex = 0;
+            selectRollAxis.SelectedIndex = 0;
             g = canvas.CreateGraphics();
 
             // Здесь мы задаём Декартову систему координат на канвасе
@@ -47,6 +49,20 @@ namespace _3Dbasics
             textShiftY.Enabled = interactiveMode;
             textShiftZ.Enabled = interactiveMode;
             rbAxonometric.Enabled = interactiveMode;
+            selectMirrorAxis.Enabled = interactiveMode;
+            rbWorldCenter.Enabled = interactiveMode;
+            rbCenter.Enabled = interactiveMode;
+            buttonMirror.Enabled = interactiveMode;
+            buttonRoll.Enabled = interactiveMode;
+            selectRollAxis.Enabled = interactiveMode;
+            buttonRotateAroundLine.Enabled = interactiveMode;
+            textX1.Enabled = interactiveMode;
+            textX2.Enabled = interactiveMode;
+            textY1.Enabled = interactiveMode;
+            textY2.Enabled = interactiveMode;
+            textZ1.Enabled = interactiveMode;
+            textZ2.Enabled = interactiveMode;
+            textAngleForLineRotation.Enabled = interactiveMode;
 
             buttonShape.Text = interactiveMode ? "Очистить" : "Нарисовать";
             selectShape.Enabled = !interactiveMode;
@@ -149,6 +165,48 @@ namespace _3Dbasics
             {
                 textShiftZ.Text = "0";
             }
+        }
+
+        private void rbWorldCenter_CheckedChanged(object sender, EventArgs e)
+        {
+            isScaleModeWorldCenter = rbWorldCenter.Checked;
+        }
+
+        private void buttonMirror_Click(object sender, EventArgs e)
+        {
+            // TODO:
+        }
+
+        private void selectMirrorAxis_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (selectMirrorAxis.SelectedIndex)
+            {
+                case 0: currentMirrorAxis = AxisType.X; break;
+                case 1: currentMirrorAxis = AxisType.Y; break;
+                case 2: currentMirrorAxis = AxisType.Z; break;
+                default: throw new Exception("Зеркальные оси всё сломали :(");
+            }
+        }
+
+        private void buttonRoll_Click(object sender, EventArgs e)
+        {
+            // TODO:
+        }
+
+        private void selectRollAxis_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (selectRollAxis.SelectedIndex)
+            {
+                case 0: currentRollAxis = AxisType.X; break;
+                case 1: currentRollAxis = AxisType.Y; break;
+                case 2: currentRollAxis = AxisType.Z; break;
+                default: throw new Exception("Вращающиеся оси всё сломали :(");
+            }
+        }
+
+        private void buttonRotateAroundLine_Click(object sender, EventArgs e)
+        {
+            // TODO
         }
     }
 }

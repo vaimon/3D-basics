@@ -14,10 +14,22 @@ namespace _3Dbasics
     public partial class Form1
     {
         public AxisType currentAxis;
+        public AxisType currentMirrorAxis;
+        public AxisType currentRollAxis;
+
+        public bool isScaleModeWorldCenter = true; 
         private void buttonScale_Click(object sender, EventArgs e)
         {
-            scale(ref currentShape, int.Parse(textScaleX.Text), int.Parse(textScaleY.Text), int.Parse(textScaleZ.Text));
-            redraw();
+            if (isScaleModeWorldCenter)
+            {
+                scale(ref currentShape, int.Parse(textScaleX.Text), int.Parse(textScaleY.Text), int.Parse(textScaleZ.Text));
+                redraw();
+            }
+            else
+            {
+                // TODO: scale from shape center 
+            }
+            
         }
         private void buttonRotate_Click(object sender, EventArgs e)
         {
