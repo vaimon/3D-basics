@@ -19,9 +19,12 @@ namespace _3Dbasics
             selectShape.SelectedIndex = 0;
             selectAxis.SelectedIndex = 0;
             g = canvas.CreateGraphics();
+
+            // Здесь мы задаём Декартову систему координат на канвасе
             g.ScaleTransform(1.0F, -1.0F);
             g.TranslateTransform(0.0F, -(float)canvas.Height);
 
+            // А здесь задаём точку начала координат
             Point.worldCenter = new PointF(canvas.Width / 2, canvas.Height / 2);
             setFlags();
         }
