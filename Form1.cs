@@ -191,7 +191,8 @@ namespace _3Dbasics
 
         private void buttonRoll_Click(object sender, EventArgs e)
         {
-            // TODO:
+            rotationThroughTheCenter(ref currentShape, currentRollAxis);
+            redraw();
         }
 
         private void selectRollAxis_SelectedIndexChanged(object sender, EventArgs e)

@@ -106,7 +106,6 @@ namespace _3Dbasics
             });
         }
 
-
         // Отражение относительно выбранной координатной плоскости
         void reflectionAboutTheAxis(ref Shape shape, AxisType axis)
         {
@@ -129,6 +128,39 @@ namespace _3Dbasics
             shape.transformPoints((ref Point p) =>
             {
                 var res = reflectionMatrix * new Matrix(4, 1).fill(p.X, p.Y, p.Z, 1);
+                p = new Point((int)res[0, 0], (int)res[1, 0], (int)res[2, 0]);
+            });
+        }
+
+        // Вращение многогранника вокруг прямой проходящей через центр многогранника, параллельно выбранной координатной оси
+        void rotationThroughTheCenter(ref Shape shape, AxisType axis)
+        {
+            int sumX = 0, sumY = 0, sumZ = 0;
+            foreach (var face in shape.Faces)
+            {
+                sumX += face.getCenter().X;
+                sumY += face.getCenter().Y;
+                sumZ += face.getCenter().Z;
+            }
+            Point center = new Point(sumX / shape.Faces.Count(), sumY / shape.Faces.Count(), sumZ / shape.Faces.Count());
+
+            Matrix rotationMatrix;
+            // переносим в начало координат
+            rotationMatrix = new Matrix(4, 4).fill(1, 0, 0, -center.X, 0, 1, 0, -center.Y, 0, 0, 1, -center.Z, 0, 0, 0, 1);
+            shape.transformPoints((ref Point p) =>
+            {
+                var res = rotationMatrix * new Matrix(4, 1).fill(p.X, p.Y, p.Z, 1);
+                p = new Point((int)res[0, 0], (int)res[1, 0], (int)res[2, 0]);
+            });
+
+            // поворачиваем относительно оси
+            rotate(ref shape, axis, 15);
+
+            // возвращаем на исходное место
+            rotationMatrix = new Matrix(4, 4).fill(1, 0, 0, center.X, 0, 1, 0, center.Y, 0, 0, 1, center.Z, 0, 0, 0, 1);
+            shape.transformPoints((ref Point p) =>
+            {
+                var res = rotationMatrix * new Matrix(4, 1).fill(p.X, p.Y, p.Z, 1);
                 p = new Point((int)res[0, 0], (int)res[1, 0], (int)res[2, 0]);
             });
         }

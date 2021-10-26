@@ -88,7 +88,7 @@ namespace _3Dbasics
             this.canvas.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.canvas.Dock = System.Windows.Forms.DockStyle.Right;
             this.canvas.Location = new System.Drawing.Point(205, 0);
-            this.canvas.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.canvas.Margin = new System.Windows.Forms.Padding(2);
             this.canvas.Name = "canvas";
             this.canvas.Size = new System.Drawing.Size(979, 591);
             this.canvas.TabIndex = 0;
@@ -101,7 +101,7 @@ namespace _3Dbasics
             this.rbAxonometric.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.rbAxonometric.Checked = true;
             this.rbAxonometric.Location = new System.Drawing.Point(974, 28);
-            this.rbAxonometric.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.rbAxonometric.Margin = new System.Windows.Forms.Padding(2);
             this.rbAxonometric.Name = "rbAxonometric";
             this.rbAxonometric.Size = new System.Drawing.Size(172, 19);
             this.rbAxonometric.TabIndex = 17;
@@ -116,7 +116,7 @@ namespace _3Dbasics
             this.rbPerspective.BackColor = System.Drawing.Color.White;
             this.rbPerspective.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.rbPerspective.Location = new System.Drawing.Point(974, 7);
-            this.rbPerspective.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.rbPerspective.Margin = new System.Windows.Forms.Padding(2);
             this.rbPerspective.Name = "rbPerspective";
             this.rbPerspective.Size = new System.Drawing.Size(165, 19);
             this.rbPerspective.TabIndex = 17;
@@ -127,7 +127,7 @@ namespace _3Dbasics
             // buttonShape
             // 
             this.buttonShape.Location = new System.Drawing.Point(8, 31);
-            this.buttonShape.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.buttonShape.Margin = new System.Windows.Forms.Padding(2);
             this.buttonShape.Name = "buttonShape";
             this.buttonShape.Size = new System.Drawing.Size(192, 26);
             this.buttonShape.TabIndex = 1;
@@ -145,7 +145,7 @@ namespace _3Dbasics
             "Икосаэдр",
             "Додекаэдр"});
             this.selectShape.Location = new System.Drawing.Point(8, 7);
-            this.selectShape.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.selectShape.Margin = new System.Windows.Forms.Padding(2);
             this.selectShape.Name = "selectShape";
             this.selectShape.Size = new System.Drawing.Size(194, 23);
             this.selectShape.TabIndex = 2;
@@ -155,7 +155,7 @@ namespace _3Dbasics
             // 
             this.buttonShift.Enabled = false;
             this.buttonShift.Location = new System.Drawing.Point(8, 93);
-            this.buttonShift.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.buttonShift.Margin = new System.Windows.Forms.Padding(2);
             this.buttonShift.Name = "buttonShift";
             this.buttonShift.Size = new System.Drawing.Size(192, 26);
             this.buttonShift.TabIndex = 1;
@@ -167,7 +167,7 @@ namespace _3Dbasics
             // 
             this.buttonRotate.Enabled = false;
             this.buttonRotate.Location = new System.Drawing.Point(8, 161);
-            this.buttonRotate.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.buttonRotate.Margin = new System.Windows.Forms.Padding(2);
             this.buttonRotate.Name = "buttonRotate";
             this.buttonRotate.Size = new System.Drawing.Size(192, 26);
             this.buttonRotate.TabIndex = 1;
@@ -179,7 +179,7 @@ namespace _3Dbasics
             // 
             this.textAngle.Enabled = false;
             this.textAngle.Location = new System.Drawing.Point(50, 139);
-            this.textAngle.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textAngle.Margin = new System.Windows.Forms.Padding(2);
             this.textAngle.MaxLength = 5;
             this.textAngle.Name = "textAngle";
             this.textAngle.Size = new System.Drawing.Size(48, 23);
@@ -201,7 +201,7 @@ namespace _3Dbasics
             this.buttonScale.Enabled = false;
             this.buttonScale.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.buttonScale.Location = new System.Drawing.Point(8, 291);
-            this.buttonScale.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.buttonScale.Margin = new System.Windows.Forms.Padding(2);
             this.buttonScale.Name = "buttonScale";
             this.buttonScale.Size = new System.Drawing.Size(192, 26);
             this.buttonScale.TabIndex = 1;
@@ -243,7 +243,7 @@ namespace _3Dbasics
             // 
             this.textShiftZ.Enabled = false;
             this.textShiftZ.Location = new System.Drawing.Point(166, 70);
-            this.textShiftZ.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textShiftZ.Margin = new System.Windows.Forms.Padding(2);
             this.textShiftZ.MaxLength = 5;
             this.textShiftZ.Name = "textShiftZ";
             this.textShiftZ.Size = new System.Drawing.Size(36, 23);
@@ -255,7 +255,7 @@ namespace _3Dbasics
             // 
             this.textShiftY.Enabled = false;
             this.textShiftY.Location = new System.Drawing.Point(99, 70);
-            this.textShiftY.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textShiftY.Margin = new System.Windows.Forms.Padding(2);
             this.textShiftY.MaxLength = 5;
             this.textShiftY.Name = "textShiftY";
             this.textShiftY.Size = new System.Drawing.Size(36, 23);
@@ -267,7 +267,7 @@ namespace _3Dbasics
             // 
             this.textShiftX.Enabled = false;
             this.textShiftX.Location = new System.Drawing.Point(32, 70);
-            this.textShiftX.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textShiftX.Margin = new System.Windows.Forms.Padding(2);
             this.textShiftX.MaxLength = 5;
             this.textShiftX.Name = "textShiftX";
             this.textShiftX.Size = new System.Drawing.Size(36, 23);
@@ -309,7 +309,7 @@ namespace _3Dbasics
             // 
             this.textScaleZ.Enabled = false;
             this.textScaleZ.Location = new System.Drawing.Point(166, 208);
-            this.textScaleZ.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textScaleZ.Margin = new System.Windows.Forms.Padding(2);
             this.textScaleZ.MaxLength = 5;
             this.textScaleZ.Name = "textScaleZ";
             this.textScaleZ.Size = new System.Drawing.Size(36, 23);
@@ -321,7 +321,7 @@ namespace _3Dbasics
             // 
             this.textScaleY.Enabled = false;
             this.textScaleY.Location = new System.Drawing.Point(99, 208);
-            this.textScaleY.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textScaleY.Margin = new System.Windows.Forms.Padding(2);
             this.textScaleY.MaxLength = 5;
             this.textScaleY.Name = "textScaleY";
             this.textScaleY.Size = new System.Drawing.Size(36, 23);
@@ -333,7 +333,7 @@ namespace _3Dbasics
             // 
             this.textScaleX.Enabled = false;
             this.textScaleX.Location = new System.Drawing.Point(32, 208);
-            this.textScaleX.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textScaleX.Margin = new System.Windows.Forms.Padding(2);
             this.textScaleX.MaxLength = 5;
             this.textScaleX.Name = "textScaleX";
             this.textScaleX.Size = new System.Drawing.Size(36, 23);
@@ -360,7 +360,7 @@ namespace _3Dbasics
             "Y",
             "Z"});
             this.selectAxis.Location = new System.Drawing.Point(166, 137);
-            this.selectAxis.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.selectAxis.Margin = new System.Windows.Forms.Padding(2);
             this.selectAxis.Name = "selectAxis";
             this.selectAxis.Size = new System.Drawing.Size(36, 23);
             this.selectAxis.TabIndex = 2;
@@ -369,7 +369,7 @@ namespace _3Dbasics
             // btnShowAxis
             // 
             this.btnShowAxis.Location = new System.Drawing.Point(974, 68);
-            this.btnShowAxis.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnShowAxis.Margin = new System.Windows.Forms.Padding(2);
             this.btnShowAxis.Name = "btnShowAxis";
             this.btnShowAxis.Size = new System.Drawing.Size(201, 31);
             this.btnShowAxis.TabIndex = 18;
@@ -383,7 +383,7 @@ namespace _3Dbasics
             this.rbIsometric.BackColor = System.Drawing.Color.White;
             this.rbIsometric.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.rbIsometric.Location = new System.Drawing.Point(974, 47);
-            this.rbIsometric.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.rbIsometric.Margin = new System.Windows.Forms.Padding(2);
             this.rbIsometric.Name = "rbIsometric";
             this.rbIsometric.Size = new System.Drawing.Size(173, 19);
             this.rbIsometric.TabIndex = 17;
@@ -396,7 +396,7 @@ namespace _3Dbasics
             this.buttonMirror.Enabled = false;
             this.buttonMirror.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.buttonMirror.Location = new System.Drawing.Point(6, 336);
-            this.buttonMirror.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.buttonMirror.Margin = new System.Windows.Forms.Padding(2);
             this.buttonMirror.Name = "buttonMirror";
             this.buttonMirror.Size = new System.Drawing.Size(153, 26);
             this.buttonMirror.TabIndex = 1;
@@ -407,13 +407,14 @@ namespace _3Dbasics
             // selectMirrorAxis
             // 
             this.selectMirrorAxis.Enabled = false;
+            this.selectMirrorAxis.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.selectMirrorAxis.FormattingEnabled = true;
             this.selectMirrorAxis.Items.AddRange(new object[] {
             "XY",
             "XZ",
             "YZ"});
             this.selectMirrorAxis.Location = new System.Drawing.Point(164, 340);
-            this.selectMirrorAxis.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.selectMirrorAxis.Margin = new System.Windows.Forms.Padding(2);
             this.selectMirrorAxis.Name = "selectMirrorAxis";
             this.selectMirrorAxis.Size = new System.Drawing.Size(36, 23);
             this.selectMirrorAxis.TabIndex = 2;
@@ -434,7 +435,7 @@ namespace _3Dbasics
             this.panel1.Controls.Add(this.rbCenter);
             this.panel1.Controls.Add(this.rbWorldCenter);
             this.panel1.Location = new System.Drawing.Point(8, 247);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(192, 41);
             this.panel1.TabIndex = 19;
@@ -443,7 +444,7 @@ namespace _3Dbasics
             // 
             this.rbCenter.AutoSize = true;
             this.rbCenter.Location = new System.Drawing.Point(9, 23);
-            this.rbCenter.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.rbCenter.Margin = new System.Windows.Forms.Padding(2);
             this.rbCenter.Name = "rbCenter";
             this.rbCenter.Size = new System.Drawing.Size(105, 19);
             this.rbCenter.TabIndex = 0;
@@ -455,7 +456,7 @@ namespace _3Dbasics
             this.rbWorldCenter.AutoSize = true;
             this.rbWorldCenter.Checked = true;
             this.rbWorldCenter.Location = new System.Drawing.Point(9, 3);
-            this.rbWorldCenter.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.rbWorldCenter.Margin = new System.Windows.Forms.Padding(2);
             this.rbWorldCenter.Name = "rbWorldCenter";
             this.rbWorldCenter.Size = new System.Drawing.Size(57, 19);
             this.rbWorldCenter.TabIndex = 0;
@@ -469,7 +470,7 @@ namespace _3Dbasics
             this.buttonRoll.Enabled = false;
             this.buttonRoll.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.buttonRoll.Location = new System.Drawing.Point(6, 379);
-            this.buttonRoll.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.buttonRoll.Margin = new System.Windows.Forms.Padding(2);
             this.buttonRoll.Name = "buttonRoll";
             this.buttonRoll.Size = new System.Drawing.Size(153, 26);
             this.buttonRoll.TabIndex = 1;
@@ -486,7 +487,7 @@ namespace _3Dbasics
             "Y",
             "Z"});
             this.selectRollAxis.Location = new System.Drawing.Point(164, 383);
-            this.selectRollAxis.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.selectRollAxis.Margin = new System.Windows.Forms.Padding(2);
             this.selectRollAxis.Name = "selectRollAxis";
             this.selectRollAxis.Size = new System.Drawing.Size(36, 23);
             this.selectRollAxis.TabIndex = 2;
@@ -496,7 +497,7 @@ namespace _3Dbasics
             // 
             this.textX1.Enabled = false;
             this.textX1.Location = new System.Drawing.Point(32, 446);
-            this.textX1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textX1.Margin = new System.Windows.Forms.Padding(2);
             this.textX1.MaxLength = 5;
             this.textX1.Name = "textX1";
             this.textX1.Size = new System.Drawing.Size(36, 23);
@@ -508,7 +509,7 @@ namespace _3Dbasics
             // 
             this.textY1.Enabled = false;
             this.textY1.Location = new System.Drawing.Point(99, 447);
-            this.textY1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textY1.Margin = new System.Windows.Forms.Padding(2);
             this.textY1.MaxLength = 5;
             this.textY1.Name = "textY1";
             this.textY1.Size = new System.Drawing.Size(36, 23);
@@ -520,7 +521,7 @@ namespace _3Dbasics
             // 
             this.textZ1.Enabled = false;
             this.textZ1.Location = new System.Drawing.Point(164, 447);
-            this.textZ1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textZ1.Margin = new System.Windows.Forms.Padding(2);
             this.textZ1.MaxLength = 5;
             this.textZ1.Name = "textZ1";
             this.textZ1.Size = new System.Drawing.Size(36, 23);
@@ -572,7 +573,7 @@ namespace _3Dbasics
             // 
             this.textX2.Enabled = false;
             this.textX2.Location = new System.Drawing.Point(32, 470);
-            this.textX2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textX2.Margin = new System.Windows.Forms.Padding(2);
             this.textX2.MaxLength = 5;
             this.textX2.Name = "textX2";
             this.textX2.Size = new System.Drawing.Size(36, 23);
@@ -584,7 +585,7 @@ namespace _3Dbasics
             // 
             this.textY2.Enabled = false;
             this.textY2.Location = new System.Drawing.Point(99, 470);
-            this.textY2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textY2.Margin = new System.Windows.Forms.Padding(2);
             this.textY2.MaxLength = 5;
             this.textY2.Name = "textY2";
             this.textY2.Size = new System.Drawing.Size(36, 23);
@@ -596,7 +597,7 @@ namespace _3Dbasics
             // 
             this.textZ2.Enabled = false;
             this.textZ2.Location = new System.Drawing.Point(164, 470);
-            this.textZ2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textZ2.Margin = new System.Windows.Forms.Padding(2);
             this.textZ2.MaxLength = 5;
             this.textZ2.Name = "textZ2";
             this.textZ2.Size = new System.Drawing.Size(36, 23);
@@ -638,7 +639,7 @@ namespace _3Dbasics
             // 
             this.textAngleForLineRotation.Enabled = false;
             this.textAngleForLineRotation.Location = new System.Drawing.Point(91, 498);
-            this.textAngleForLineRotation.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textAngleForLineRotation.Margin = new System.Windows.Forms.Padding(2);
             this.textAngleForLineRotation.MaxLength = 5;
             this.textAngleForLineRotation.Name = "textAngleForLineRotation";
             this.textAngleForLineRotation.Size = new System.Drawing.Size(48, 23);
@@ -659,7 +660,7 @@ namespace _3Dbasics
             // 
             this.buttonRotateAroundLine.Enabled = false;
             this.buttonRotateAroundLine.Location = new System.Drawing.Point(6, 520);
-            this.buttonRotateAroundLine.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.buttonRotateAroundLine.Margin = new System.Windows.Forms.Padding(2);
             this.buttonRotateAroundLine.Name = "buttonRotateAroundLine";
             this.buttonRotateAroundLine.Size = new System.Drawing.Size(192, 26);
             this.buttonRotateAroundLine.TabIndex = 1;
@@ -722,7 +723,7 @@ namespace _3Dbasics
             this.Controls.Add(this.buttonShape);
             this.Controls.Add(this.canvas);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.Name = "Form1";
             this.Text = "Алгем (на максималках)";
