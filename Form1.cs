@@ -63,6 +63,7 @@ namespace _3Dbasics
             textZ1.Enabled = interactiveMode;
             textZ2.Enabled = interactiveMode;
             textAngleForLineRotation.Enabled = interactiveMode;
+            textBoxAngleRotCenter.Enabled = interactiveMode;
 
             buttonShape.Text = interactiveMode ? "Очистить" : "Нарисовать";
             selectShape.Enabled = !interactiveMode;
@@ -191,7 +192,7 @@ namespace _3Dbasics
 
         private void buttonRoll_Click(object sender, EventArgs e)
         {
-            rotationThroughTheCenter(ref currentShape, currentRollAxis);
+            rotationThroughTheCenter(ref currentShape, currentRollAxis, int.Parse(textBoxAngleRotCenter.Text));
             redraw();
         }
 

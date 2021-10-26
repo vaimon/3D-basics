@@ -134,7 +134,7 @@ namespace _3Dbasics
         }
 
         // Вращение многогранника вокруг прямой проходящей через центр многогранника, параллельно выбранной координатной оси
-        void rotationThroughTheCenter(ref Shape shape, AxisType axis)
+        void rotationThroughTheCenter(ref Shape shape, AxisType axis, int angle)
         {
             int sumX = 0, sumY = 0, sumZ = 0;
             foreach (var face in shape.Faces)
@@ -157,7 +157,7 @@ namespace _3Dbasics
             });
 
             // поворачиваем относительно оси
-            rotate(ref shape, axis, 15);
+            rotate(ref shape, axis, angle);
 
             // возвращаем на исходное место
             rotationMatrix = new Matrix(4, 4).fill(1, 0, 0, center.X, 0, 1, 0, center.Y, 0, 0, 1, center.Z, 0, 0, 0, 1);

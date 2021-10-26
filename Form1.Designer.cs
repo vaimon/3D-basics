@@ -79,6 +79,9 @@ namespace _3Dbasics
             this.textAngleForLineRotation = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
             this.buttonRotateAroundLine = new System.Windows.Forms.Button();
+            this.label18 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
+            this.textBoxAngleRotCenter = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.canvas)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -178,7 +181,7 @@ namespace _3Dbasics
             // textAngle
             // 
             this.textAngle.Enabled = false;
-            this.textAngle.Location = new System.Drawing.Point(50, 139);
+            this.textAngle.Location = new System.Drawing.Point(50, 138);
             this.textAngle.Margin = new System.Windows.Forms.Padding(2);
             this.textAngle.MaxLength = 5;
             this.textAngle.Name = "textAngle";
@@ -413,7 +416,7 @@ namespace _3Dbasics
             "XY",
             "XZ",
             "YZ"});
-            this.selectMirrorAxis.Location = new System.Drawing.Point(164, 340);
+            this.selectMirrorAxis.Location = new System.Drawing.Point(164, 337);
             this.selectMirrorAxis.Margin = new System.Windows.Forms.Padding(2);
             this.selectMirrorAxis.Name = "selectMirrorAxis";
             this.selectMirrorAxis.Size = new System.Drawing.Size(36, 23);
@@ -469,12 +472,12 @@ namespace _3Dbasics
             // 
             this.buttonRoll.Enabled = false;
             this.buttonRoll.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.buttonRoll.Location = new System.Drawing.Point(6, 379);
+            this.buttonRoll.Location = new System.Drawing.Point(7, 413);
             this.buttonRoll.Margin = new System.Windows.Forms.Padding(2);
             this.buttonRoll.Name = "buttonRoll";
-            this.buttonRoll.Size = new System.Drawing.Size(153, 26);
+            this.buttonRoll.Size = new System.Drawing.Size(194, 26);
             this.buttonRoll.TabIndex = 1;
-            this.buttonRoll.Text = "Вращать вокруг центра по:";
+            this.buttonRoll.Text = "Вращать вокруг центра";
             this.buttonRoll.UseVisualStyleBackColor = true;
             this.buttonRoll.Click += new System.EventHandler(this.buttonRoll_Click);
             // 
@@ -486,7 +489,7 @@ namespace _3Dbasics
             "X",
             "Y",
             "Z"});
-            this.selectRollAxis.Location = new System.Drawing.Point(164, 383);
+            this.selectRollAxis.Location = new System.Drawing.Point(165, 386);
             this.selectRollAxis.Margin = new System.Windows.Forms.Padding(2);
             this.selectRollAxis.Name = "selectRollAxis";
             this.selectRollAxis.Size = new System.Drawing.Size(36, 23);
@@ -496,7 +499,7 @@ namespace _3Dbasics
             // textX1
             // 
             this.textX1.Enabled = false;
-            this.textX1.Location = new System.Drawing.Point(32, 446);
+            this.textX1.Location = new System.Drawing.Point(32, 480);
             this.textX1.Margin = new System.Windows.Forms.Padding(2);
             this.textX1.MaxLength = 5;
             this.textX1.Name = "textX1";
@@ -508,7 +511,7 @@ namespace _3Dbasics
             // textY1
             // 
             this.textY1.Enabled = false;
-            this.textY1.Location = new System.Drawing.Point(99, 447);
+            this.textY1.Location = new System.Drawing.Point(99, 481);
             this.textY1.Margin = new System.Windows.Forms.Padding(2);
             this.textY1.MaxLength = 5;
             this.textY1.Name = "textY1";
@@ -520,7 +523,7 @@ namespace _3Dbasics
             // textZ1
             // 
             this.textZ1.Enabled = false;
-            this.textZ1.Location = new System.Drawing.Point(164, 447);
+            this.textZ1.Location = new System.Drawing.Point(164, 481);
             this.textZ1.Margin = new System.Windows.Forms.Padding(2);
             this.textZ1.MaxLength = 5;
             this.textZ1.Name = "textZ1";
@@ -532,7 +535,7 @@ namespace _3Dbasics
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(6, 449);
+            this.label10.Location = new System.Drawing.Point(6, 483);
             this.label10.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(22, 15);
@@ -542,7 +545,7 @@ namespace _3Dbasics
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(71, 448);
+            this.label11.Location = new System.Drawing.Point(71, 482);
             this.label11.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(22, 15);
@@ -552,7 +555,7 @@ namespace _3Dbasics
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(136, 449);
+            this.label12.Location = new System.Drawing.Point(136, 483);
             this.label12.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(21, 15);
@@ -562,7 +565,7 @@ namespace _3Dbasics
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(6, 427);
+            this.label13.Location = new System.Drawing.Point(6, 461);
             this.label13.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(124, 15);
@@ -572,7 +575,7 @@ namespace _3Dbasics
             // textX2
             // 
             this.textX2.Enabled = false;
-            this.textX2.Location = new System.Drawing.Point(32, 470);
+            this.textX2.Location = new System.Drawing.Point(32, 504);
             this.textX2.Margin = new System.Windows.Forms.Padding(2);
             this.textX2.MaxLength = 5;
             this.textX2.Name = "textX2";
@@ -584,7 +587,7 @@ namespace _3Dbasics
             // textY2
             // 
             this.textY2.Enabled = false;
-            this.textY2.Location = new System.Drawing.Point(99, 470);
+            this.textY2.Location = new System.Drawing.Point(99, 504);
             this.textY2.Margin = new System.Windows.Forms.Padding(2);
             this.textY2.MaxLength = 5;
             this.textY2.Name = "textY2";
@@ -596,7 +599,7 @@ namespace _3Dbasics
             // textZ2
             // 
             this.textZ2.Enabled = false;
-            this.textZ2.Location = new System.Drawing.Point(164, 470);
+            this.textZ2.Location = new System.Drawing.Point(164, 504);
             this.textZ2.Margin = new System.Windows.Forms.Padding(2);
             this.textZ2.MaxLength = 5;
             this.textZ2.Name = "textZ2";
@@ -608,7 +611,7 @@ namespace _3Dbasics
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(6, 472);
+            this.label14.Location = new System.Drawing.Point(6, 506);
             this.label14.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(22, 15);
@@ -618,7 +621,7 @@ namespace _3Dbasics
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(71, 472);
+            this.label15.Location = new System.Drawing.Point(71, 506);
             this.label15.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(22, 15);
@@ -628,7 +631,7 @@ namespace _3Dbasics
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(136, 472);
+            this.label16.Location = new System.Drawing.Point(136, 506);
             this.label16.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(21, 15);
@@ -638,7 +641,7 @@ namespace _3Dbasics
             // textAngleForLineRotation
             // 
             this.textAngleForLineRotation.Enabled = false;
-            this.textAngleForLineRotation.Location = new System.Drawing.Point(91, 498);
+            this.textAngleForLineRotation.Location = new System.Drawing.Point(91, 532);
             this.textAngleForLineRotation.Margin = new System.Windows.Forms.Padding(2);
             this.textAngleForLineRotation.MaxLength = 5;
             this.textAngleForLineRotation.Name = "textAngleForLineRotation";
@@ -649,7 +652,7 @@ namespace _3Dbasics
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(50, 500);
+            this.label17.Location = new System.Drawing.Point(50, 534);
             this.label17.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(36, 15);
@@ -659,7 +662,7 @@ namespace _3Dbasics
             // buttonRotateAroundLine
             // 
             this.buttonRotateAroundLine.Enabled = false;
-            this.buttonRotateAroundLine.Location = new System.Drawing.Point(6, 520);
+            this.buttonRotateAroundLine.Location = new System.Drawing.Point(6, 554);
             this.buttonRotateAroundLine.Margin = new System.Windows.Forms.Padding(2);
             this.buttonRotateAroundLine.Name = "buttonRotateAroundLine";
             this.buttonRotateAroundLine.Size = new System.Drawing.Size(192, 26);
@@ -668,12 +671,46 @@ namespace _3Dbasics
             this.buttonRotateAroundLine.UseVisualStyleBackColor = true;
             this.buttonRotateAroundLine.Click += new System.EventHandler(this.buttonRotateAroundLine_Click);
             // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(130, 389);
+            this.label18.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(31, 15);
+            this.label18.TabIndex = 20;
+            this.label18.Text = "Ось:";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(9, 389);
+            this.label19.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(36, 15);
+            this.label19.TabIndex = 21;
+            this.label19.Text = "Угол:";
+            // 
+            // textBoxAngleRotCenter
+            // 
+            this.textBoxAngleRotCenter.Enabled = false;
+            this.textBoxAngleRotCenter.Location = new System.Drawing.Point(51, 386);
+            this.textBoxAngleRotCenter.Margin = new System.Windows.Forms.Padding(2);
+            this.textBoxAngleRotCenter.MaxLength = 5;
+            this.textBoxAngleRotCenter.Name = "textBoxAngleRotCenter";
+            this.textBoxAngleRotCenter.Size = new System.Drawing.Size(48, 23);
+            this.textBoxAngleRotCenter.TabIndex = 22;
+            this.textBoxAngleRotCenter.Text = "0";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1184, 591);
+            this.Controls.Add(this.textBoxAngleRotCenter);
+            this.Controls.Add(this.label19);
+            this.Controls.Add(this.label18);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnShowAxis);
             this.Controls.Add(this.rbPerspective);
@@ -787,6 +824,9 @@ namespace _3Dbasics
         private System.Windows.Forms.TextBox textAngleForLineRotation;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Button buttonRotateAroundLine;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.TextBox textBoxAngleRotCenter;
     }
 }
 
