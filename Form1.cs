@@ -174,7 +174,8 @@ namespace _3Dbasics
 
         private void buttonMirror_Click(object sender, EventArgs e)
         {
-            // TODO:
+            reflectionAboutTheAxis(ref currentShape, currentMirrorAxis);
+            redraw();
         }
 
         private void selectMirrorAxis_SelectedIndexChanged(object sender, EventArgs e)

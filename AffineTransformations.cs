@@ -105,5 +105,32 @@ namespace _3Dbasics
                 p = new Point((int)res[0, 0], (int)res[1, 0], (int)res[2, 0]);
             });
         }
+
+
+        // Отражение относительно выбранной координатной плоскости
+        void reflectionAboutTheAxis(ref Shape shape, AxisType axis)
+        {
+            Matrix reflectionMatrix;
+            switch (axis)
+            {
+                case AxisType.X: // XY                 
+                    reflectionMatrix = new Matrix(4, 4).fill(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, -1, 0, 0, 0, 0, 1);
+                    break;
+                case AxisType.Y: // XZ
+                    reflectionMatrix = new Matrix(4, 4).fill(1, 0, 0, 0, 0, -1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+                    break;
+                case AxisType.Z: // YZ                 
+                    reflectionMatrix = new Matrix(4, 4).fill(-1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+                    break;
+                default:
+                    throw new Exception("Зеркальные оси всё сломали :(");
+            }
+
+            shape.transformPoints((ref Point p) =>
+            {
+                var res = reflectionMatrix * new Matrix(4, 1).fill(p.X, p.Y, p.Z, 1);
+                p = new Point((int)res[0, 0], (int)res[1, 0], (int)res[2, 0]);
+            });
+        }
     }
 }
