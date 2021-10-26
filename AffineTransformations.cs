@@ -125,6 +125,7 @@ namespace _3Dbasics
                     throw new Exception("Зеркальные оси всё сломали :(");
             }
 
+            // отражение фигуры
             shape.transformPoints((ref Point p) =>
             {
                 var res = reflectionMatrix * new Matrix(4, 1).fill(p.X, p.Y, p.Z, 1);
@@ -142,6 +143,8 @@ namespace _3Dbasics
                 sumY += face.getCenter().Y;
                 sumZ += face.getCenter().Z;
             }
+            
+            // центр фигуры
             Point center = new Point(sumX / shape.Faces.Count(), sumY / shape.Faces.Count(), sumZ / shape.Faces.Count());
 
             Matrix rotationMatrix;
