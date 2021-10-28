@@ -192,6 +192,7 @@ namespace _3Dbasics
     {
 
     }
+    
 
     /// <summary>
     /// Класс для получения фигур различного типа
@@ -212,6 +213,7 @@ namespace _3Dbasics
                 case ShapeType.HEXAHEDRON: return getHexahedron();
                 case ShapeType.ICOSAHEDRON: return getIcosahedron();
                 case ShapeType.DODECAHEDRON: return getDodecahedron();
+                
                 default: throw new Exception("C# очень умный (нет)");
             }
         }

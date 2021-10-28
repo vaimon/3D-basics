@@ -166,7 +166,48 @@ namespace _3Dbasics
                 textShiftZ.Text = "0";
             }
         }
-
+        private void textX1_TextChanged(object sender, EventArgs e)
+        {
+            if (textX1.Text == "")
+            {
+                textX1.Text = "1";
+            }
+        }
+        private void textY1_TextChanged(object sender, EventArgs e)
+        {
+            if (textY1.Text == "")
+            {
+                textY1.Text = "1";
+            }
+        }
+        private void textZ1_TextChanged(object sender, EventArgs e)
+        {
+            if (textZ1.Text == "")
+            {
+                textZ1.Text = "1";
+            }
+        }
+        private void textX2_TextChanged(object sender, EventArgs e)
+        {
+            if (textX2.Text == "")
+            {
+                textX2.Text = "1";
+            }
+        }
+        private void textY2_TextChanged(object sender, EventArgs e)
+        {
+            if (textY2.Text == "")
+            {
+                textY2.Text = "1";
+            }
+        }
+        private void textZ2_TextChanged(object sender, EventArgs e)
+        {
+            if (textZ2.Text == "")
+            {
+                textZ2.Text = "1";
+            }
+        }
         private void rbWorldCenter_CheckedChanged(object sender, EventArgs e)
         {
             isScaleModeWorldCenter = rbWorldCenter.Checked;
@@ -207,6 +248,13 @@ namespace _3Dbasics
         private void buttonRotateAroundLine_Click(object sender, EventArgs e)
         {
             // TODO
+            int angle = int.Parse(textAngleForLineRotation.Text);
+            Point p1 = new Point(int.Parse(textX1.Text), int.Parse(textY1.Text), int.Parse(textZ1.Text));
+            Point p2 = new Point(int.Parse(textX2.Text), int.Parse(textY2.Text), int.Parse(textZ2.Text));        
+            rotate_around_line(ref currentShape, angle,p1,p2);
+            redraw();
         }
+
+        
     }
 }
