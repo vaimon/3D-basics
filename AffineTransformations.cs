@@ -158,9 +158,9 @@ namespace _3Dbasics
             }
 
             Point vector = new Point(p2.X - p1.X, p2.Y - p1.Y, p2.Z - p1.Z);//прямая, вокруг которой будем вращать
-                                                                            // int A = p1.Y - p2.Y;//общее уравнение прямой, проходящей через заданные точки
-                                                                            //int B = p2.X - p1.X;//вектор нормали 
-                                                                            //int C = p1.X * p2.Y - p2.X *p1.Y;
+            // int A = p1.Y - p2.Y;//общее уравнение прямой, проходящей через заданные точки
+            //int B = p2.X - p1.X;//вектор нормали 
+            //int C = p1.X * p2.Y - p2.X *p1.Y;
             double length = Math.Sqrt(vector.X * vector.X + vector.Y * vector.Y + vector.Z * vector.Z);
             double l = vector.X / length;
             double m = vector.Y / length;

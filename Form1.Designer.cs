@@ -502,7 +502,7 @@ namespace _3Dbasics
             this.textX1.Size = new System.Drawing.Size(41, 27);
             this.textX1.TabIndex = 13;
             this.textX1.Text = "0";
-            this.textX1.TextChanged += new System.EventHandler(this.textX1_TextChanged);
+          
             // 
             // textY1
             // 
@@ -514,7 +514,7 @@ namespace _3Dbasics
             this.textY1.Size = new System.Drawing.Size(41, 27);
             this.textY1.TabIndex = 12;
             this.textY1.Text = "0";
-            this.textY1.TextChanged += new System.EventHandler(this.textY1_TextChanged);
+           
             // 
             // textZ1
             // 
@@ -526,7 +526,7 @@ namespace _3Dbasics
             this.textZ1.Size = new System.Drawing.Size(41, 27);
             this.textZ1.TabIndex = 11;
             this.textZ1.Text = "0";
-            this.textZ1.TextChanged += new System.EventHandler(this.textZ1_TextChanged);
+           
             // 
             // label10
             // 
@@ -578,7 +578,7 @@ namespace _3Dbasics
             this.textX2.Size = new System.Drawing.Size(41, 27);
             this.textX2.TabIndex = 13;
             this.textX2.Text = "0";
-            this.textX2.TextChanged += new System.EventHandler(this.textX2_TextChanged);
+       
             // 
             // textY2
             // 
@@ -590,7 +590,7 @@ namespace _3Dbasics
             this.textY2.Size = new System.Drawing.Size(41, 27);
             this.textY2.TabIndex = 12;
             this.textY2.Text = "0";
-            this.textY2.TextChanged += new System.EventHandler(this.textY2_TextChanged);
+            
             // 
             // textZ2
             // 
@@ -602,7 +602,7 @@ namespace _3Dbasics
             this.textZ2.Size = new System.Drawing.Size(41, 27);
             this.textZ2.TabIndex = 11;
             this.textZ2.Text = "0";
-            this.textZ2.TextChanged += new System.EventHandler(this.textZ2_TextChanged);
+          
             // 
             // label14
             // 

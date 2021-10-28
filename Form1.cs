@@ -166,48 +166,7 @@ namespace _3Dbasics
                 textShiftZ.Text = "0";
             }
         }
-        private void textX1_TextChanged(object sender, EventArgs e)
-        {
-            if (textX1.Text == "")
-            {
-                textX1.Text = "1";
-            }
-        }
-        private void textY1_TextChanged(object sender, EventArgs e)
-        {
-            if (textY1.Text == "")
-            {
-                textY1.Text = "1";
-            }
-        }
-        private void textZ1_TextChanged(object sender, EventArgs e)
-        {
-            if (textZ1.Text == "")
-            {
-                textZ1.Text = "1";
-            }
-        }
-        private void textX2_TextChanged(object sender, EventArgs e)
-        {
-            if (textX2.Text == "")
-            {
-                textX2.Text = "1";
-            }
-        }
-        private void textY2_TextChanged(object sender, EventArgs e)
-        {
-            if (textY2.Text == "")
-            {
-                textY2.Text = "1";
-            }
-        }
-        private void textZ2_TextChanged(object sender, EventArgs e)
-        {
-            if (textZ2.Text == "")
-            {
-                textZ2.Text = "1";
-            }
-        }
+        
         private void rbWorldCenter_CheckedChanged(object sender, EventArgs e)
         {
             isScaleModeWorldCenter = rbWorldCenter.Checked;
@@ -252,6 +211,13 @@ namespace _3Dbasics
             Point p1 = new Point(int.Parse(textX1.Text), int.Parse(textY1.Text), int.Parse(textZ1.Text));
             Point p2 = new Point(int.Parse(textX2.Text), int.Parse(textY2.Text), int.Parse(textZ2.Text));        
             rotate_around_line(ref currentShape, angle,p1,p2);
+            int A = p1.Y - p2.Y;//общее уравнение прямой, проходящей через заданные точки
+            int B = p2.X - p1.X;//вектор нормали 
+            int C = p1.X * p2.Y - p2.X *p1.Y;
+            Point p3 = new Point(p2.X - p1.X,  p2.Y- p1.Y,  p2.Z - p1.Z);
+          // возможно, что все проще
+            //redraw();
+            shift(ref currentShape, p1.X, p1.Y, p1.Z);
             redraw();
         }
 
