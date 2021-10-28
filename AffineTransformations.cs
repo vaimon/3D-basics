@@ -149,24 +149,31 @@ namespace _3Dbasics
         {
             //матрица
             Matrix rotation = new Matrix(0, 0);
-           
+            if (p2.Z < p1.Z || (p2.Z == p1.Z && p2.Y < p1.Y) ||
+               (p2.Z == p1.Z && p2.Y == p1.Y) && p2.X < p1.X)
+            {
+                Point tmp = p1;
+                p1 = p2;
+                p2 = tmp;
+            }
+
             Point vector = new Point(p2.X - p1.X, p2.Y - p1.Y, p2.Z - p1.Z);//прямая, вокруг которой будем вращать
                                                                             // int A = p1.Y - p2.Y;//общее уравнение прямой, проходящей через заданные точки
                                                                             //int B = p2.X - p1.X;//вектор нормали 
                                                                             //int C = p1.X * p2.Y - p2.X *p1.Y;
             double length = Math.Sqrt(vector.X * vector.X + vector.Y * vector.Y + vector.Z * vector.Z);
-            int l = (int)(vector.X / length);
-            int m = (int)(vector.Y / length);
-            int n = (int)(vector.Z / length);
-            Point scaledvector = new Point(l, m, n);//направленный вектор
-            double anglesin = Math.Sin(angle * Math.PI / 180);
-            double anglecos = Math.Cos(angle * Math.PI / 180);
+            double l = vector.X / length;
+            double m = vector.Y / length;
+            double n = vector.Z / length;
+           // Point scaledvector = new Point(l, m, n);//направленный вектор
+            double anglesin = Math.Sin(ShapeGetter.degreesToRadians(angle));
+            double anglecos = Math.Cos(ShapeGetter.degreesToRadians(angle));
            rotation = new Matrix(4, 4).fill(l * l + anglecos * (1 - l * l), l * (1 - anglecos) * m - n * anglesin, l * (1 - anglecos) * n + m * anglesin, 0,
                                 l * (1 - anglecos) * m + n * anglesin, m * m + anglecos * (1 - m * m), m * (1 - anglecos) * n - l * anglesin, 0,
                                 l * (1 - anglecos) * n - m * anglesin, m * (1 - anglecos) * n + l * anglesin, n * n + anglecos * (1 - n * n), 0,
                                 0, 0, 0, 1);
 
-        shape.transformPoints((ref Point p) =>
+          shape.transformPoints((ref Point p) =>
             {
                 var res = rotation * new Matrix(4, 1).fill(p.X, p.Y, p.Z, 1);
                 p = new Point((int)res[0, 0], (int)res[1, 0], (int)res[2, 0]);
