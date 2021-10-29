@@ -105,5 +105,67 @@ namespace _3Dbasics
                 p = new Point((int)res[0, 0], (int)res[1, 0], (int)res[2, 0]);
             });
         }
+
+        // Отражение относительно выбранной координатной плоскости
+        void reflectionAboutTheAxis(ref Shape shape, AxisType axis)
+        {
+            Matrix reflectionMatrix;
+            switch (axis)
+            {
+                case AxisType.X: // XY                 
+                    reflectionMatrix = new Matrix(4, 4).fill(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, -1, 0, 0, 0, 0, 1);
+                    break;
+                case AxisType.Y: // XZ
+                    reflectionMatrix = new Matrix(4, 4).fill(1, 0, 0, 0, 0, -1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+                    break;
+                case AxisType.Z: // YZ                 
+                    reflectionMatrix = new Matrix(4, 4).fill(-1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+                    break;
+                default:
+                    throw new Exception("Зеркальные оси всё сломали :(");
+            }
+
+            // отражение фигуры
+            shape.transformPoints((ref Point p) =>
+            {
+                var res = reflectionMatrix * new Matrix(4, 1).fill(p.X, p.Y, p.Z, 1);
+                p = new Point((int)res[0, 0], (int)res[1, 0], (int)res[2, 0]);
+            });
+        }
+
+        // Вращение многогранника вокруг прямой проходящей через центр многогранника, параллельно выбранной координатной оси
+        void rotationThroughTheCenter(ref Shape shape, AxisType axis, int angle)
+        {
+            int sumX = 0, sumY = 0, sumZ = 0;
+            foreach (var face in shape.Faces)
+            {
+                sumX += face.getCenter().X;
+                sumY += face.getCenter().Y;
+                sumZ += face.getCenter().Z;
+            }
+            
+            // центр фигуры
+            Point center = new Point(sumX / shape.Faces.Count(), sumY / shape.Faces.Count(), sumZ / shape.Faces.Count());
+
+            Matrix rotationMatrix;
+            // переносим в начало координат
+            rotationMatrix = new Matrix(4, 4).fill(1, 0, 0, -center.X, 0, 1, 0, -center.Y, 0, 0, 1, -center.Z, 0, 0, 0, 1);
+            shape.transformPoints((ref Point p) =>
+            {
+                var res = rotationMatrix * new Matrix(4, 1).fill(p.X, p.Y, p.Z, 1);
+                p = new Point((int)res[0, 0], (int)res[1, 0], (int)res[2, 0]);
+            });
+
+            // поворачиваем относительно оси
+            rotate(ref shape, axis, angle);
+
+            // возвращаем на исходное место
+            rotationMatrix = new Matrix(4, 4).fill(1, 0, 0, center.X, 0, 1, 0, center.Y, 0, 0, 1, center.Z, 0, 0, 0, 1);
+            shape.transformPoints((ref Point p) =>
+            {
+                var res = rotationMatrix * new Matrix(4, 1).fill(p.X, p.Y, p.Z, 1);
+                p = new Point((int)res[0, 0], (int)res[1, 0], (int)res[2, 0]);
+            });
+        }
     }
 }

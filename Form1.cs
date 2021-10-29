@@ -63,6 +63,7 @@ namespace _3Dbasics
             textZ1.Enabled = interactiveMode;
             textZ2.Enabled = interactiveMode;
             textAngleForLineRotation.Enabled = interactiveMode;
+            textBoxAngleRotCenter.Enabled = interactiveMode;
 
             buttonShape.Text = interactiveMode ? "Очистить" : "Нарисовать";
             selectShape.Enabled = !interactiveMode;
@@ -174,7 +175,8 @@ namespace _3Dbasics
 
         private void buttonMirror_Click(object sender, EventArgs e)
         {
-            // TODO:
+            reflectionAboutTheAxis(ref currentShape, currentMirrorAxis);
+            redraw();
         }
 
         private void selectMirrorAxis_SelectedIndexChanged(object sender, EventArgs e)
@@ -190,7 +192,8 @@ namespace _3Dbasics
 
         private void buttonRoll_Click(object sender, EventArgs e)
         {
-            // TODO:
+            rotationThroughTheCenter(ref currentShape, currentRollAxis, int.Parse(textBoxAngleRotCenter.Text));
+            redraw();
         }
 
         private void selectRollAxis_SelectedIndexChanged(object sender, EventArgs e)
