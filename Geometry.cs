@@ -18,7 +18,7 @@ namespace _3Dbasics
     /// </summary>
     class Point
     {
-        int x, y, z;
+        double x, y, z;
         public static ProjectionType projection = ProjectionType.TRIMETRIC;
         public static PointF worldCenter;
         static Matrix isometricMatrix = new Matrix(3,3).fill(Math.Sqrt(3),0,-Math.Sqrt(3),1,2,1, Math.Sqrt(2),-Math.Sqrt(2), Math.Sqrt(2)) * (1/ Math.Sqrt(6));
@@ -32,9 +32,20 @@ namespace _3Dbasics
             this.z = z;
         }
 
-        public int X { get => x; set => x = value; }
-        public int Y { get => y; set => y = value; }
-        public int Z { get => z; set => z = value; }
+        public Point(double x, double y, double z)
+        {
+            this.x = x;
+            this.y = y;
+            this.z = z;
+        }
+
+        public int X { get => (int)x; set => x = value; }
+        public int Y { get => (int)y; set => y = value; }
+        public int Z { get => (int)z; set => z = value; }
+
+        public double Xf { get => x; set => x = value; }
+        public double Yf { get => y; set => y = value; }
+        public double Zf { get => z; set => z = value; }
 
         /// <summary>
         /// Перевод точки из 3D в 2D
@@ -43,17 +54,17 @@ namespace _3Dbasics
         public PointF to2D(){
             if (projection == ProjectionType.PERSPECTIVE)
             {
-                Matrix res = new Matrix(1, 4).fill(X, Y, Z, 1) * centralMatrix * (1/(k*Z + 1));
+                Matrix res = new Matrix(1, 4).fill(Xf, Yf, Zf, 1) * centralMatrix * (1/(k*Zf + 1));
                 return new PointF(worldCenter.X + (float)res[0,0], worldCenter.Y + (float)res[0,1]);
             }
             else if (projection == ProjectionType.TRIMETRIC)
             {
-                Matrix res = new Matrix(1, 4).fill(X, Y, Z, 1) * trimetricMatrix;
+                Matrix res = new Matrix(1, 4).fill(Xf, Yf, Zf, 1) * trimetricMatrix;
                 return new PointF(worldCenter.X + (float)res[0,0], worldCenter.Y + (float)res[0, 1]);
             }
             else
             {
-                Matrix res = new Matrix(3, 3).fill(1, 0, 0, 0, 1, 0, 0, 0, 0) * isometricMatrix * new Matrix(3, 1).fill(X, Y, Z);
+                Matrix res = new Matrix(3, 3).fill(1, 0, 0, 0, 1, 0, 0, 0, 0) * isometricMatrix * new Matrix(3, 1).fill(Xf, Yf, Zf);
                 return new PointF(worldCenter.X + (float)res[0, 0], worldCenter.Y + (float)res[1, 0]);
             }
         }
@@ -110,12 +121,12 @@ namespace _3Dbasics
         /// <returns><c>Point</c> - центр тяжести</returns>
         public Point getCenter()
         {
-            int x = 0, y = 0, z = 0;
+            double x = 0, y = 0, z = 0;
             foreach(var line in edges)
             {
-                x += line.Start.X;
-                y += line.Start.Y;
-                z += line.Start.Z;
+                x += line.Start.Xf;
+                y += line.Start.Yf;
+                z += line.Start.Zf;
             }
             return new Point(x / edges.Count, y / edges.Count, z / edges.Count);
         }
@@ -314,10 +325,10 @@ namespace _3Dbasics
             {
                 if( angle % 72 == 0)
                 {
-                    circlePoints.Add(new Point(circleCenter.X + (int)(100 * Math.Cos(degreesToRadians(angle))), circleCenter.Y + 100, circleCenter.Z + (int)(100 * Math.Sin(degreesToRadians(angle)))));
+                    circlePoints.Add(new Point(circleCenter.X + (100 * Math.Cos(degreesToRadians(angle))), circleCenter.Y + 100, circleCenter.Z + (100 * Math.Sin(degreesToRadians(angle)))));
                     continue;
                 }
-                circlePoints.Add(new Point(circleCenter.X + (int)(100 * Math.Cos(degreesToRadians(angle))), circleCenter.Y, circleCenter.Z + (int)(100 * Math.Sin(degreesToRadians(angle)))));
+                circlePoints.Add(new Point(circleCenter.X + (100 * Math.Cos(degreesToRadians(angle))), circleCenter.Y, circleCenter.Z + (100 * Math.Sin(degreesToRadians(angle)))));
             }
             Point a = new Point(100, 50, 100);
             Point b = new Point(100, 250, 100);

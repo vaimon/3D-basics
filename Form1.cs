@@ -13,9 +13,9 @@ namespace _3Dbasics
     public partial class Form1 : System.Windows.Forms.Form
     {
         bool isInteractiveMode = false;
-        int shiftx=0;
-        int shifty=0;
-        int shiftz=0;
+        double shiftx=0;
+        double shifty =0;
+        double shiftz =0;
 
         public Form1()
         {
@@ -233,16 +233,16 @@ namespace _3Dbasics
             }
 
             rotate_around_line(ref currentShape, angle,p1,p2);
-            int A = p1.Y - p2.Y;//общее уравнение прямой, проходящей через заданные точки
-            int B = p2.X - p1.X;//вектор нормали 
-            int C = p1.X * p2.Y - p2.X *p1.Y;
-            Point p3 = new Point(p2.X - p1.X,  p2.Y- p1.Y,  p2.Z - p1.Z);
+            double A = p1.Yf - p2.Yf;//общее уравнение прямой, проходящей через заданные точки
+            double B = p2.Xf - p1.Xf;//вектор нормали 
+            double C = p1.Xf * p2.Yf - p2.Xf *p1.Yf;
+            Point p3 = new Point(p2.Xf - p1.Xf,  p2.Yf- p1.Yf,  p2.Zf - p1.Zf);
           // возможно, что все проще
             //redraw();
-            shift(ref currentShape, p1.X-shiftx, p1.Y-shifty, p1.Z-shiftz);
-            shiftx = p1.X;
-            shifty = p1.Y;
-            shiftz = p1.Z;
+            shift(ref currentShape, p1.Xf-shiftx, p1.Yf-shifty, p1.Zf-shiftz);
+            shiftx = p1.Xf;
+            shifty = p1.Yf;
+            shiftz = p1.Zf;
             redraw();
         }
 

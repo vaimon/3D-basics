@@ -28,12 +28,12 @@ namespace _3Dbasics
             else
             {
                 // TODO: scale from shape center 
-                int sumX = 0, sumY = 0, sumZ = 0;
+                double sumX = 0, sumY = 0, sumZ = 0;
                 foreach (var face in currentShape.Faces)
                 {
-                    sumX += face.getCenter().X;
-                    sumY += face.getCenter().Y;
-                    sumZ += face.getCenter().Z;
+                    sumX += face.getCenter().Xf;
+                    sumY += face.getCenter().Yf;
+                    sumZ += face.getCenter().Zf;
                 }
 
                 // центр фигуры
@@ -41,12 +41,12 @@ namespace _3Dbasics
                 int cx = int.Parse(textScaleX.Text);
                 int cy = int.Parse(textScaleY.Text);
                 int cz = int.Parse(textScaleZ.Text);
-                shift(ref currentShape, -center.X, -center.Y, -center.Z);
+                shift(ref currentShape, -center.Xf, -center.Yf, -center.Zf);
                 // scale_shift(ref currentShape, cx, cy, cz, center.X, center.Y, center.Z);
                 redraw();
                 scale(ref currentShape, cx, cy, cz);
                 redraw();
-                shift(ref currentShape, center.X, center.Y, center.Z);
+                shift(ref currentShape, center.Xf, center.Yf, center.Zf);
                 redraw();
             }
 
@@ -71,13 +71,13 @@ namespace _3Dbasics
         /// <param name="dx">Сдвиг по оси X</param>
         /// <param name="dy">Сдвиг по оси Y</param>
         /// <param name="dz">Сдвиг по оси Z</param>
-        void shift(ref Shape shape, int dx, int dy, int dz)
+        void shift(ref Shape shape, double dx, double dy, double dz)
         {
             Matrix shift = new Matrix(4, 4).fill(1, 0, 0, dx, 0, 1, 0, dy, 0, 0, 1, dz, 0, 0, 0, 1);
             shape.transformPoints((ref Point p) =>
             {
-                var res = shift * new Matrix(4, 1).fill(p.X, p.Y, p.Z, 1);
-                p = new Point((int)res[0, 0], (int)res[1, 0], (int)res[2, 0]);
+                var res = shift * new Matrix(4, 1).fill(p.Xf, p.Yf, p.Zf, 1);
+                p = new Point(res[0, 0], res[1, 0], res[2, 0]);
             });
         }
 
@@ -88,13 +88,13 @@ namespace _3Dbasics
         /// <param name="cx">Растяжение по оси X</param>
         /// <param name="cy">Растяжение по оси Y</param>
         /// <param name="cz">Растяжение по оси Z</param>
-        void scale(ref Shape shape, int cx, int cy, int cz)
+        void scale(ref Shape shape, double cx, double cy, double cz)
         {
             Matrix scale = new Matrix(4, 4).fill(cx, 0, 0, 0, 0, cy, 0, 0, 0, 0, cz, 0, 0, 0, 0, 1);
             shape.transformPoints((ref Point p) =>
             {
-                var res = scale * new Matrix(4, 1).fill(p.X, p.Y, p.Z, 1);
-                p = new Point((int)res[0, 0], (int)res[1, 0], (int)res[2, 0]);
+                var res = scale * new Matrix(4, 1).fill(p.Xf, p.Yf, p.Zf, 1);
+                p = new Point(res[0, 0], res[1, 0], res[2, 0]);
             });
         }
         /// <summary>
@@ -107,13 +107,13 @@ namespace _3Dbasics
         /// <param name="a">координата X точки</param>
         /// <param name="b">координата Y точки</param>
         /// <param name="c">координата Z точки</param>
-        void scale_shift(ref Shape shape, int cx, int cy, int cz, int a, int b, int c)
+        void scale_shift(ref Shape shape, double cx, double cy, double cz, double a, double b, double c)
         {
             Matrix scale = new Matrix(4, 4).fill(cx, 0, 0, 0, 0, cy, 0, 0, 0, 0, cz, 0, (1 - cx) * a, (1 - cy) * b, (1 - cz) * c, 1);
             shape.transformPoints((ref Point p) =>
             {
-                var res = scale * new Matrix(4, 1).fill(p.X, p.Y, p.Z, 1);
-                p = new Point((int)res[0, 0], (int)res[1, 0], (int)res[2, 0]);
+                var res = scale * new Matrix(4, 1).fill(p.Xf, p.Yf, p.Zf, 1);
+                p = new Point(res[0, 0], res[1, 0], res[2, 0]);
             });
         }
 
@@ -141,8 +141,8 @@ namespace _3Dbasics
 
             shape.transformPoints((ref Point p) =>
             {
-                var res = rotation * new Matrix(4, 1).fill(p.X, p.Y, p.Z, 1);
-                p = new Point((int)res[0, 0], (int)res[1, 0], (int)res[2, 0]);
+                var res = rotation * new Matrix(4, 1).fill(p.Xf, p.Yf, p.Zf, 1);
+                p = new Point(res[0, 0], res[1, 0], res[2, 0]);
             });
         }
 
@@ -158,14 +158,14 @@ namespace _3Dbasics
                 p2 = tmp;
             }
 
-            Point vector = new Point(p2.X - p1.X, p2.Y - p1.Y, p2.Z - p1.Z);//прямая, вокруг которой будем вращать
+            Point vector = new Point(p2.Xf - p1.Xf, p2.Yf - p1.Yf, p2.Zf - p1.Zf);//прямая, вокруг которой будем вращать
             // int A = p1.Y - p2.Y;//общее уравнение прямой, проходящей через заданные точки
             //int B = p2.X - p1.X;//вектор нормали 
             //int C = p1.X * p2.Y - p2.X *p1.Y;
-            double length = Math.Sqrt(vector.X * vector.X + vector.Y * vector.Y + vector.Z * vector.Z);
-            double l = vector.X / length;
-            double m = vector.Y / length;
-            double n = vector.Z / length;
+            double length = Math.Sqrt(vector.Xf * vector.Xf + vector.Yf * vector.Yf + vector.Zf * vector.Zf);
+            double l = vector.Xf / length;
+            double m = vector.Yf / length;
+            double n = vector.Zf / length;
             // Point scaledvector = new Point(l, m, n);//направленный вектор
             double anglesin = Math.Sin(ShapeGetter.degreesToRadians(angle));
             double anglecos = Math.Cos(ShapeGetter.degreesToRadians(angle));
@@ -176,8 +176,8 @@ namespace _3Dbasics
 
             shape.transformPoints((ref Point p) =>
               {
-                  var res = rotation * new Matrix(4, 1).fill(p.X, p.Y, p.Z, 1);
-                  p = new Point((int)res[0, 0], (int)res[1, 0], (int)res[2, 0]);
+                  var res = rotation * new Matrix(4, 1).fill(p.Xf, p.Yf, p.Zf, 1);
+                  p = new Point(res[0, 0], res[1, 0], res[2, 0]);
               });
         }
 
@@ -203,20 +203,20 @@ namespace _3Dbasics
                 // отражение фигуры
                 shape.transformPoints((ref Point p) =>
                 {
-                    var res = reflectionMatrix * new Matrix(4, 1).fill(p.X, p.Y, p.Z, 1);
-                    p = new Point((int)res[0, 0], (int)res[1, 0], (int)res[2, 0]);
+                    var res = reflectionMatrix * new Matrix(4, 1).fill(p.Xf, p.Yf, p.Zf, 1);
+                    p = new Point(res[0, 0], res[1, 0], res[2, 0]);
                 });
             }
 
             // Вращение многогранника вокруг прямой проходящей через центр многогранника, параллельно выбранной координатной оси
             void rotationThroughTheCenter(ref Shape shape, AxisType axis, int angle)
             {
-                int sumX = 0, sumY = 0, sumZ = 0;
+                double sumX = 0, sumY = 0, sumZ = 0;
                 foreach (var face in shape.Faces)
                 {
-                    sumX += face.getCenter().X;
-                    sumY += face.getCenter().Y;
-                    sumZ += face.getCenter().Z;
+                    sumX += face.getCenter().Xf;
+                    sumY += face.getCenter().Yf;
+                    sumZ += face.getCenter().Zf;
                 }
 
                 // центр фигуры
@@ -224,22 +224,22 @@ namespace _3Dbasics
 
                 Matrix rotationMatrix;
                 // переносим в начало координат
-                rotationMatrix = new Matrix(4, 4).fill(1, 0, 0, -center.X, 0, 1, 0, -center.Y, 0, 0, 1, -center.Z, 0, 0, 0, 1);
+                rotationMatrix = new Matrix(4, 4).fill(1, 0, 0, -center.Xf, 0, 1, 0, -center.Yf, 0, 0, 1, -center.Zf, 0, 0, 0, 1);
                 shape.transformPoints((ref Point p) =>
                 {
-                    var res = rotationMatrix * new Matrix(4, 1).fill(p.X, p.Y, p.Z, 1);
-                    p = new Point((int)res[0, 0], (int)res[1, 0], (int)res[2, 0]);
+                    var res = rotationMatrix * new Matrix(4, 1).fill(p.Xf, p.Yf, p.Zf, 1);
+                    p = new Point(res[0, 0], res[1, 0], res[2, 0]);
                 });
 
                 // поворачиваем относительно оси
                 rotate(ref shape, axis, angle);
 
                 // возвращаем на исходное место
-                rotationMatrix = new Matrix(4, 4).fill(1, 0, 0, center.X, 0, 1, 0, center.Y, 0, 0, 1, center.Z, 0, 0, 0, 1);
+                rotationMatrix = new Matrix(4, 4).fill(1, 0, 0, center.Xf, 0, 1, 0, center.Yf, 0, 0, 1, center.Zf, 0, 0, 0, 1);
                 shape.transformPoints((ref Point p) =>
                 {
-                    var res = rotationMatrix * new Matrix(4, 1).fill(p.X, p.Y, p.Z, 1);
-                    p = new Point((int)res[0, 0], (int)res[1, 0], (int)res[2, 0]);
+                    var res = rotationMatrix * new Matrix(4, 1).fill(p.Xf, p.Yf, p.Zf, 1);
+                    p = new Point(res[0, 0], res[1, 0], res[2, 0]);
                 });
 
             }
