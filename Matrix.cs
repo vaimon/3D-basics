@@ -8,7 +8,7 @@ namespace _3Dbasics
 {
     class Matrix
     {
-        double [,] matr;
+        double[,] matr;
         int rowCount;
         int colCount;
 
@@ -16,7 +16,7 @@ namespace _3Dbasics
         {
             rowCount = rows;
             colCount = cols;
-            matr = new double[rows,cols];
+            matr = new double[rows, cols];
         }
         /// <summary>
         /// Заполнение матрицы слева направо, сверху вниз
@@ -25,11 +25,11 @@ namespace _3Dbasics
         /// <returns></returns>
         public Matrix fill(params double[] elems)
         {
-            for(int i = 0; i < rowCount; i++)
+            for (int i = 0; i < rowCount; i++)
             {
-                for(int j = 0; j < colCount; j++)
+                for (int j = 0; j < colCount; j++)
                 {
-                    matr[i, j] = Math.Round(elems[i * colCount + j],2);
+                    matr[i, j] = Math.Round(elems[i * colCount + j], 2);
                 }
             }
             return this;
@@ -41,7 +41,7 @@ namespace _3Dbasics
         /// <returns></returns>
         public Matrix fillAffine(params double[] elems)
         {
-            return fill(elems[0],elems[1],0,elems[2],elems[3],0,elems[4],elems[5],1);
+            return fill(elems[0], elems[1], 0, elems[2], elems[3], 0, elems[4], elems[5], 1);
         }
 
         public double this[int x, int y]
@@ -98,5 +98,26 @@ namespace _3Dbasics
             }
             return res;
         }
+        /*public Matrix Transp()
+        {
+            var res = new Matrix(rowCount, colCount);
+            var clone = matr;
+            for (int i = 0; i < rowCount; i++)
+            {
+                for (int j = 0; j < i; j++)
+                {
+                    var tmp = clone[i, j];
+                    clone[i, j] = clone[j, i];
+                    clone[j, i] = tmp;
+                }
+            }
+            for (int i = 0; i < rowCount; i++)
+            {
+                for (int j = 0; j < colCount; j++)
+                    res[i, j] = clone[i, j];
+                    }
+            return res;
+
+        }*/
     }
 }

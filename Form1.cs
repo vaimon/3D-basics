@@ -13,6 +13,10 @@ namespace _3Dbasics
     public partial class Form1 : System.Windows.Forms.Form
     {
         bool isInteractiveMode = false;
+        int shiftx=0;
+        int shifty=0;
+        int shiftz=0;
+
         public Form1()
         {
             InitializeComponent();
@@ -167,7 +171,7 @@ namespace _3Dbasics
                 textShiftZ.Text = "0";
             }
         }
-
+        
         private void rbWorldCenter_CheckedChanged(object sender, EventArgs e)
         {
             isScaleModeWorldCenter = rbWorldCenter.Checked;
@@ -206,10 +210,42 @@ namespace _3Dbasics
                 default: throw new Exception("Вращающиеся оси всё сломали :(");
             }
         }
-
+        
         private void buttonRotateAroundLine_Click(object sender, EventArgs e)
         {
             // TODO
+            int angle = int.Parse(textAngleForLineRotation.Text);
+            Point p1 = new Point(int.Parse(textX1.Text), int.Parse(textY1.Text), int.Parse(textZ1.Text));
+            Point p2 = new Point(int.Parse(textX2.Text), int.Parse(textY2.Text), int.Parse(textZ2.Text));
+            if (p1.Z ==0 && p1.X==0&&p1.Y==0&& (p2.Z != 0 ||p2.Y ==0 || p2.X==0) )
+              
+            {
+                Point tmp = p1;
+                p1 = p2;
+                p2 = tmp;
+            }
+            if (p2.Z == 0 && p2.X == 0 && p2.Y == 0 && (p1.Z != 0 || p1.Y == 0 || p1.X == 0))
+
+            {
+                Point tmp = p1;
+                p1 = p2;
+                p2 = tmp;
+            }
+
+            rotate_around_line(ref currentShape, angle,p1,p2);
+            int A = p1.Y - p2.Y;//общее уравнение прямой, проходящей через заданные точки
+            int B = p2.X - p1.X;//вектор нормали 
+            int C = p1.X * p2.Y - p2.X *p1.Y;
+            Point p3 = new Point(p2.X - p1.X,  p2.Y- p1.Y,  p2.Z - p1.Z);
+          // возможно, что все проще
+            //redraw();
+            shift(ref currentShape, p1.X-shiftx, p1.Y-shifty, p1.Z-shiftz);
+            shiftx = p1.X;
+            shifty = p1.Y;
+            shiftz = p1.Z;
+            redraw();
         }
+
+        
     }
 }
