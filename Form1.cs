@@ -213,7 +213,22 @@ namespace _3Dbasics
             // TODO
             int angle = int.Parse(textAngleForLineRotation.Text);
             Point p1 = new Point(int.Parse(textX1.Text), int.Parse(textY1.Text), int.Parse(textZ1.Text));
-            Point p2 = new Point(int.Parse(textX2.Text), int.Parse(textY2.Text), int.Parse(textZ2.Text));        
+            Point p2 = new Point(int.Parse(textX2.Text), int.Parse(textY2.Text), int.Parse(textZ2.Text));
+            if (p1.Z ==0 && p1.X==0&&p1.Y==0&& (p2.Z != 0 ||p2.Y ==0 || p2.X==0) )
+              
+            {
+                Point tmp = p1;
+                p1 = p2;
+                p2 = tmp;
+            }
+            if (p2.Z == 0 && p2.X == 0 && p2.Y == 0 && (p1.Z != 0 || p1.Y == 0 || p1.X == 0))
+
+            {
+                Point tmp = p1;
+                p1 = p2;
+                p2 = tmp;
+            }
+
             rotate_around_line(ref currentShape, angle,p1,p2);
             int A = p1.Y - p2.Y;//общее уравнение прямой, проходящей через заданные точки
             int B = p2.X - p1.X;//вектор нормали 
