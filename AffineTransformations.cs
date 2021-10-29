@@ -10,14 +10,14 @@ namespace _3Dbasics
     /// Тип координатной прямой (для поворотов)
     /// </summary>
     public enum AxisType { X, Y, Z };
-    
+
     public partial class Form1
     {
         public AxisType currentAxis;
         public AxisType currentMirrorAxis;
         public AxisType currentRollAxis;
 
-        public bool isScaleModeWorldCenter = true; 
+        public bool isScaleModeWorldCenter = true;
         private void buttonScale_Click(object sender, EventArgs e)
         {
             if (isScaleModeWorldCenter)
@@ -41,8 +41,8 @@ namespace _3Dbasics
                 int cx = int.Parse(textScaleX.Text);
                 int cy = int.Parse(textScaleY.Text);
                 int cz = int.Parse(textScaleZ.Text);
-                 shift(ref currentShape, -center.X, -center.Y, -center.Z);
-               // scale_shift(ref currentShape, cx, cy, cz, center.X, center.Y, center.Z);
+                shift(ref currentShape, -center.X, -center.Y, -center.Z);
+                // scale_shift(ref currentShape, cx, cy, cz, center.X, center.Y, center.Z);
                 redraw();
                 scale(ref currentShape, cx, cy, cz);
                 redraw();
@@ -62,7 +62,7 @@ namespace _3Dbasics
             shift(ref currentShape, int.Parse(textShiftX.Text), int.Parse(textShiftY.Text), int.Parse(textShiftZ.Text));
             redraw();
         }
-        
+
 
         /// <summary>
         /// Сдвинуть фигуру на заданные расстояния
@@ -107,9 +107,9 @@ namespace _3Dbasics
         /// <param name="a">координата X точки</param>
         /// <param name="b">координата Y точки</param>
         /// <param name="c">координата Z точки</param>
-        void scale_shift(ref Shape shape, int cx, int cy, int cz,int a,int b,int c)
+        void scale_shift(ref Shape shape, int cx, int cy, int cz, int a, int b, int c)
         {
-            Matrix scale = new Matrix(4, 4).fill(cx, 0, 0, 0, 0, cy, 0, 0, 0, 0, cz, 0, (1-cx)*a, (1-cy)*b, (1-cz)*c, 1);
+            Matrix scale = new Matrix(4, 4).fill(cx, 0, 0, 0, 0, cy, 0, 0, 0, 0, cz, 0, (1 - cx) * a, (1 - cy) * b, (1 - cz) * c, 1);
             shape.transformPoints((ref Point p) =>
             {
                 var res = scale * new Matrix(4, 1).fill(p.X, p.Y, p.Z, 1);
@@ -125,28 +125,28 @@ namespace _3Dbasics
         /// <param name="angle">Угол поворота в градусах</param>
         void rotate(ref Shape shape, AxisType type, int angle)
         {
-            Matrix rotation = new Matrix(0,0);
+            Matrix rotation = new Matrix(0, 0);
             switch (type)
             {
                 case AxisType.X:
                     rotation = new Matrix(4, 4).fill(1, 0, 0, 0, 0, Math.Cos(ShapeGetter.degreesToRadians(angle)), -Math.Sin(ShapeGetter.degreesToRadians(angle)), 0, 0, Math.Sin(ShapeGetter.degreesToRadians(angle)), Math.Cos(ShapeGetter.degreesToRadians(angle)), 0, 0, 0, 0, 1);
                     break;
                 case AxisType.Y:
-                    rotation = new Matrix(4, 4).fill(Math.Cos(ShapeGetter.degreesToRadians(angle)), 0, Math.Sin(ShapeGetter.degreesToRadians(angle)), 0, 0, 1 ,0 ,0, -Math.Sin(ShapeGetter.degreesToRadians(angle)), 0, Math.Cos(ShapeGetter.degreesToRadians(angle)), 0, 0, 0, 0, 1);
+                    rotation = new Matrix(4, 4).fill(Math.Cos(ShapeGetter.degreesToRadians(angle)), 0, Math.Sin(ShapeGetter.degreesToRadians(angle)), 0, 0, 1, 0, 0, -Math.Sin(ShapeGetter.degreesToRadians(angle)), 0, Math.Cos(ShapeGetter.degreesToRadians(angle)), 0, 0, 0, 0, 1);
                     break;
                 case AxisType.Z:
                     rotation = new Matrix(4, 4).fill(Math.Cos(ShapeGetter.degreesToRadians(angle)), -Math.Sin(ShapeGetter.degreesToRadians(angle)), 0, 0, Math.Sin(ShapeGetter.degreesToRadians(angle)), Math.Cos(ShapeGetter.degreesToRadians(angle)), 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
                     break;
             }
-           
+
             shape.transformPoints((ref Point p) =>
             {
                 var res = rotation * new Matrix(4, 1).fill(p.X, p.Y, p.Z, 1);
                 p = new Point((int)res[0, 0], (int)res[1, 0], (int)res[2, 0]);
             });
         }
-      
-        void rotate_around_line(ref Shape shape,  int angle,Point p1,Point p2)
+
+        void rotate_around_line(ref Shape shape, int angle, Point p1, Point p2)
         {
             //матрица
             Matrix rotation = new Matrix(0, 0);
@@ -166,82 +166,82 @@ namespace _3Dbasics
             double l = vector.X / length;
             double m = vector.Y / length;
             double n = vector.Z / length;
-           // Point scaledvector = new Point(l, m, n);//направленный вектор
+            // Point scaledvector = new Point(l, m, n);//направленный вектор
             double anglesin = Math.Sin(ShapeGetter.degreesToRadians(angle));
             double anglecos = Math.Cos(ShapeGetter.degreesToRadians(angle));
-           rotation = new Matrix(4, 4).fill(l * l + anglecos * (1 - l * l), l * (1 - anglecos) * m - n * anglesin, l * (1 - anglecos) * n + m * anglesin, 0,
-                                l * (1 - anglecos) * m + n * anglesin, m * m + anglecos * (1 - m * m), m * (1 - anglecos) * n - l * anglesin, 0,
-                                l * (1 - anglecos) * n - m * anglesin, m * (1 - anglecos) * n + l * anglesin, n * n + anglecos * (1 - n * n), 0,
-                                0, 0, 0, 1);
+            rotation = new Matrix(4, 4).fill(l * l + anglecos * (1 - l * l), l * (1 - anglecos) * m - n * anglesin, l * (1 - anglecos) * n + m * anglesin, 0,
+                                 l * (1 - anglecos) * m + n * anglesin, m * m + anglecos * (1 - m * m), m * (1 - anglecos) * n - l * anglesin, 0,
+                                 l * (1 - anglecos) * n - m * anglesin, m * (1 - anglecos) * n + l * anglesin, n * n + anglecos * (1 - n * n), 0,
+                                 0, 0, 0, 1);
 
-          shape.transformPoints((ref Point p) =>
-            {
-                var res = rotation * new Matrix(4, 1).fill(p.X, p.Y, p.Z, 1);
-                p = new Point((int)res[0, 0], (int)res[1, 0], (int)res[2, 0]);
-            });
-           
-
-        // Отражение относительно выбранной координатной плоскости
-        void reflectionAboutTheAxis(ref Shape shape, AxisType axis)
-        {
-            Matrix reflectionMatrix;
-            switch (axis)
-            {
-                case AxisType.X: // XY                 
-                    reflectionMatrix = new Matrix(4, 4).fill(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, -1, 0, 0, 0, 0, 1);
-                    break;
-                case AxisType.Y: // XZ
-                    reflectionMatrix = new Matrix(4, 4).fill(1, 0, 0, 0, 0, -1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
-                    break;
-                case AxisType.Z: // YZ                 
-                    reflectionMatrix = new Matrix(4, 4).fill(-1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
-                    break;
-                default:
-                    throw new Exception("Зеркальные оси всё сломали :(");
-            }
-
-            // отражение фигуры
             shape.transformPoints((ref Point p) =>
-            {
-                var res = reflectionMatrix * new Matrix(4, 1).fill(p.X, p.Y, p.Z, 1);
-                p = new Point((int)res[0, 0], (int)res[1, 0], (int)res[2, 0]);
-            });
+              {
+                  var res = rotation * new Matrix(4, 1).fill(p.X, p.Y, p.Z, 1);
+                  p = new Point((int)res[0, 0], (int)res[1, 0], (int)res[2, 0]);
+              });
         }
 
-        // Вращение многогранника вокруг прямой проходящей через центр многогранника, параллельно выбранной координатной оси
-        void rotationThroughTheCenter(ref Shape shape, AxisType axis, int angle)
-        {
-            int sumX = 0, sumY = 0, sumZ = 0;
-            foreach (var face in shape.Faces)
+            // Отражение относительно выбранной координатной плоскости
+            void reflectionAboutTheAxis(ref Shape shape, AxisType axis)
             {
-                sumX += face.getCenter().X;
-                sumY += face.getCenter().Y;
-                sumZ += face.getCenter().Z;
+                Matrix reflectionMatrix;
+                switch (axis)
+                {
+                    case AxisType.X: // XY                 
+                        reflectionMatrix = new Matrix(4, 4).fill(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, -1, 0, 0, 0, 0, 1);
+                        break;
+                    case AxisType.Y: // XZ
+                        reflectionMatrix = new Matrix(4, 4).fill(1, 0, 0, 0, 0, -1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+                        break;
+                    case AxisType.Z: // YZ                 
+                        reflectionMatrix = new Matrix(4, 4).fill(-1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+                        break;
+                    default:
+                        throw new Exception("Зеркальные оси всё сломали :(");
+                }
+
+                // отражение фигуры
+                shape.transformPoints((ref Point p) =>
+                {
+                    var res = reflectionMatrix * new Matrix(4, 1).fill(p.X, p.Y, p.Z, 1);
+                    p = new Point((int)res[0, 0], (int)res[1, 0], (int)res[2, 0]);
+                });
             }
-            
-            // центр фигуры
-            Point center = new Point(sumX / shape.Faces.Count(), sumY / shape.Faces.Count(), sumZ / shape.Faces.Count());
 
-            Matrix rotationMatrix;
-            // переносим в начало координат
-            rotationMatrix = new Matrix(4, 4).fill(1, 0, 0, -center.X, 0, 1, 0, -center.Y, 0, 0, 1, -center.Z, 0, 0, 0, 1);
-            shape.transformPoints((ref Point p) =>
+            // Вращение многогранника вокруг прямой проходящей через центр многогранника, параллельно выбранной координатной оси
+            void rotationThroughTheCenter(ref Shape shape, AxisType axis, int angle)
             {
-                var res = rotationMatrix * new Matrix(4, 1).fill(p.X, p.Y, p.Z, 1);
-                p = new Point((int)res[0, 0], (int)res[1, 0], (int)res[2, 0]);
-            });
+                int sumX = 0, sumY = 0, sumZ = 0;
+                foreach (var face in shape.Faces)
+                {
+                    sumX += face.getCenter().X;
+                    sumY += face.getCenter().Y;
+                    sumZ += face.getCenter().Z;
+                }
 
-            // поворачиваем относительно оси
-            rotate(ref shape, axis, angle);
+                // центр фигуры
+                Point center = new Point(sumX / shape.Faces.Count(), sumY / shape.Faces.Count(), sumZ / shape.Faces.Count());
 
-            // возвращаем на исходное место
-            rotationMatrix = new Matrix(4, 4).fill(1, 0, 0, center.X, 0, 1, 0, center.Y, 0, 0, 1, center.Z, 0, 0, 0, 1);
-            shape.transformPoints((ref Point p) =>
-            {
-                var res = rotationMatrix * new Matrix(4, 1).fill(p.X, p.Y, p.Z, 1);
-                p = new Point((int)res[0, 0], (int)res[1, 0], (int)res[2, 0]);
-            });
+                Matrix rotationMatrix;
+                // переносим в начало координат
+                rotationMatrix = new Matrix(4, 4).fill(1, 0, 0, -center.X, 0, 1, 0, -center.Y, 0, 0, 1, -center.Z, 0, 0, 0, 1);
+                shape.transformPoints((ref Point p) =>
+                {
+                    var res = rotationMatrix * new Matrix(4, 1).fill(p.X, p.Y, p.Z, 1);
+                    p = new Point((int)res[0, 0], (int)res[1, 0], (int)res[2, 0]);
+                });
 
+                // поворачиваем относительно оси
+                rotate(ref shape, axis, angle);
+
+                // возвращаем на исходное место
+                rotationMatrix = new Matrix(4, 4).fill(1, 0, 0, center.X, 0, 1, 0, center.Y, 0, 0, 1, center.Z, 0, 0, 0, 1);
+                shape.transformPoints((ref Point p) =>
+                {
+                    var res = rotationMatrix * new Matrix(4, 1).fill(p.X, p.Y, p.Z, 1);
+                    p = new Point((int)res[0, 0], (int)res[1, 0], (int)res[2, 0]);
+                });
+
+            }
         }
     }
-}
