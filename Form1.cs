@@ -13,6 +13,10 @@ namespace _3Dbasics
     public partial class Form1 : System.Windows.Forms.Form
     {
         bool isInteractiveMode = false;
+        int shiftx=0;
+        int shifty=0;
+        int shiftz=0;
+
         public Form1()
         {
             InitializeComponent();
@@ -203,7 +207,7 @@ namespace _3Dbasics
                 default: throw new Exception("Вращающиеся оси всё сломали :(");
             }
         }
-
+        
         private void buttonRotateAroundLine_Click(object sender, EventArgs e)
         {
             // TODO
@@ -217,7 +221,10 @@ namespace _3Dbasics
             Point p3 = new Point(p2.X - p1.X,  p2.Y- p1.Y,  p2.Z - p1.Z);
           // возможно, что все проще
             //redraw();
-            shift(ref currentShape, p1.X, p1.Y, p1.Z);
+            shift(ref currentShape, p1.X-shiftx, p1.Y-shifty, p1.Z-shiftz);
+            shiftx = p1.X;
+            shifty = p1.Y;
+            shiftz = p1.Z;
             redraw();
         }
 
